@@ -26,7 +26,7 @@ To install this application,
 
 ### API Documentation
 
-  THE Documentation for the Quick-Credit Restful API: [WayFarer API](https://app.swaggerhub.com/apis/Boths1229/WAYFARER/1.0.0) 
+  THE Documentation for the WayFarer Restful API: [WayFarer API](https://app.swaggerhub.com/apis/Boths1229/WAYFARER/1.0.0) 
 
 ### Coding Style
 
