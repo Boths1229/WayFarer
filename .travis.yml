@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+    - "stable"
+script:
+    - npm run int:test
+cache: 
+  directories:
+    - "node_modules"
+addons:
+  apt:
+    update: true    
+after_success:
+    - npm run coveralls
+services:
+    - postgresql
+before_script:
+    - psql -c 'create database quick_credit_test;' -U postgres
+    - psql -c 'create USER chuksEmma WITH PASSWORD null;' -U postgres
+env:
+  global:
+  - NODE_ENV=test
