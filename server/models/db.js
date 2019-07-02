@@ -4,13 +4,12 @@ import debug from 'debug';
 import config from '../config/config';
 
 dotenv.config();
-const env = process.env.NODE_ENV;
 class Model {
   constructor(table) {
     this.table = table;
 
     this.pool = new Pool({
-      connectionString: config.databaseUrl[env]
+      connectionString: process.env.DB_URL
     });
 
     this.pool.on('error', (err, client) => {

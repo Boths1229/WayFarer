@@ -65,6 +65,36 @@ class User {
       });
     }
   }
+
+  static async signIn(req, res) {
+    try {
+      const { email, password } = req.body;
+      const registered = await User.model().select('*', 'email=$1', [email]);
+
+      if (registered && pass.decryptPassword(password, registered.password)) {
+        const isAdmin = registered.isadmin;
+        const token = createToken({ email, password, isAdmin });
+        return res.status(200).json({
+          status: 'success',
+          data: {
+            user_id: registered.user_id,
+            token,
+            first_name: registered.first_name,
+            last_name: registered.last_name,
+            email: registered.email
+          }
+        });
+      } return res.status(401).json({
+        status: 'error',
+        message: 'invalid email or password'
+      });
+    } catch (e) {
+      return res.status(500).json({
+        error: 'server error',
+        e
+      });
+    }
+  }
 }
 
 export default User;

@@ -13,12 +13,19 @@ var _validateCredentials = require("../middlewares/validateCredentials");
 
 var _validateEmailExistence = _interopRequireDefault(require("../middlewares/validateEmailExistence"));
 
+var _isAdmin = require("../middlewares/isAdmin");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var signUp = _User["default"].signUp;
+// import { verifyToken } from '../helper/token';
+var signUp = _User["default"].signUp,
+    signIn = _User["default"].signIn,
+    getAllUsers = _User["default"].getAllUsers;
 
 var router = _express["default"].Router();
 
 router.post('/auth/signup', _validateCredentials.validateRegisterationCredentials, _validateEmailExistence["default"], signUp);
+router.post('/auth/signin', _validateCredentials.validateSigninCredentials, signIn);
+router.get('/users', _isAdmin.isAdmin, getAllUsers);
 var _default = router;
 exports["default"] = _default;

@@ -20,11 +20,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 _chai["default"].use(_chaiHttp["default"]);
 
-_dotenv["default"].config();
+_dotenv["default"].config(); // const env = process.env.NODE_ENV;
 
-var env = process.env.NODE_ENV;
+
 var pool = new _pg.Pool({
-  connectionString: _config["default"].databaseUrl[env]
+  connectionString: process.env.DB_URL
 });
 pool.on('error', function (err) {
   console.log(err);
@@ -45,9 +45,9 @@ describe('User test', function () {
         expect(res.body.data.user_id).to.equal(1);
         expect(res.body.data.is_admin).to.equal(false);
         expect(res.body.data.token).to.be.a('string');
-        expect(res.body.data.first_name).to.equal('ann');
-        expect(res.body.data.last_name).to.equal('doris');
-        expect(res.body.data.email).to.equal('ann@yahoo.com');
+        expect(res.body.data.first_name).to.equal('amaka');
+        expect(res.body.data.last_name).to.equal('chuks');
+        expect(res.body.data.email).to.equal('boths1229@yahoo.com');
         done();
       });
     });
@@ -94,6 +94,70 @@ describe('User test', function () {
         expect(res.body).to.be.an('object');
         expect(res.statusCode).to.equal(400);
         expect(password[0]).to.equal('Min password limit is 6');
+        done();
+      });
+    });
+  });
+  describe('POST api/v1/auth/signin', function () {
+    it('should return signin successful', function (done) {
+      _chai["default"].request(_server["default"]).post('/api/v1/auth/signin').set('Accept', 'application/json').send(_users["default"][5]).end(function (err, res) {
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.equal('success');
+        expect(res.body.data.user_id).to.equal(1);
+        expect(res.body.data.token).to.be.a('string');
+        expect(res.body.data.first_name).to.equal('amaka');
+        expect(res.body.data.last_name).to.equal('chuks');
+        expect(res.body.data.email).to.equal('boths1229@yahoo.com');
+        done();
+      });
+    });
+  });
+  describe('POST invalid input values api/v1/auth/signin', function () {
+    it('should return error when invalid details', function (done) {
+      _chai["default"].request(_server["default"]).post('/api/v1/auth/signin').set('Accept', 'application/json').send(_users["default"][6]).end(function (err, res) {
+        expect(res.body).to.be.an('object');
+        expect(res.statusCode).to.equal(401);
+        expect(res.body.message).to.equal('invalid email or password');
+        done();
+      });
+    });
+  });
+  describe('POST should return email field not filled api/v1/auth/signin', function () {
+    it('should return error when email field is not filled', function (done) {
+      _chai["default"].request(_server["default"]).post('/api/v1/auth/signin').set('Accept', 'application/json').send(_users["default"][7]).end(function (err, res) {
+        expect(res.body).to.be.an('object');
+        expect(res.statusCode).to.equal(400);
+        expect(res.body.message).to.equal('Invalid Credentials');
+        done();
+      });
+    });
+  });
+  describe('POST should return email format incorrect api/v1/auth/signin', function () {
+    it('should return error when email format is incorrect', function (done) {
+      _chai["default"].request(_server["default"]).post('/api/v1/auth/signin').set('Accept', 'application/json').send(_users["default"][8]).end(function (err, res) {
+        expect(res.body).to.be.an('object');
+        expect(res.statusCode).to.equal(400);
+        expect(res.body.message).to.equal('Invalid Credentials');
+        done();
+      });
+    });
+  });
+  describe('POST should return password field not filled api/v1/auth/signin', function () {
+    it('should return error when password field is not filled', function (done) {
+      _chai["default"].request(_server["default"]).post('/api/v1/auth/signin').set('Accept', 'application/json').send(_users["default"][9]).end(function (err, res) {
+        expect(res.body).to.be.an('object');
+        expect(res.statusCode).to.equal(400);
+        expect(res.body.message).to.equal('Invalid Credentials');
+        done();
+      });
+    });
+  });
+  describe('POST should return password incorrect api/v1/auth/signin', function () {
+    it('should return error when password is incorrect', function (done) {
+      _chai["default"].request(_server["default"]).post('/api/v1/auth/signin').set('Accept', 'application/json').send(_users["default"][10]).end(function (err, res) {
+        expect(res.body).to.be.an('object');
+        expect(res.statusCode).to.equal(400);
+        expect(res.body.message).to.equal('Invalid Credentials');
         done();
       });
     });

@@ -3,8 +3,7 @@ import { Pool } from 'pg';
 import config from '../config/config';
 
 dotenv.config();
-const env = process.env.NODE_ENV;
-const pool = new Pool({ connectionString: config.databaseUrl[env] });
+const pool = new Pool({ connectionString:process.env.DB_URL });
 
 pool.on('error', (err) => {
   console.log(err);

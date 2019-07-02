@@ -13,11 +13,11 @@ var _config = _interopRequireDefault(require("../config/config"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-_dotenv["default"].config();
+_dotenv["default"].config(); // const env = process.env.NODE_ENV;
 
-var env = process.env.NODE_ENV;
+
 var pool = new _pg.Pool({
-  connectionString: _config["default"].databaseUrl[env]
+  connectionString: process.env.DB_URL
 });
 pool.on('error', function (err) {
   console.log(err);

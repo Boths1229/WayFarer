@@ -14,11 +14,7 @@ _dotenv["default"].config();
 var config = {
   port: process.env.PORT || 5000,
   env: process.env.NODE_ENV,
-  databaseUrl: {
-    development: process.env.development_URL,
-    test: process.env.test_URL,
-    production: process.env.production_URL
-  }
+  databaseUrl: process.env.DB_URL
 };
 var _default = config;
 exports["default"] = _default;

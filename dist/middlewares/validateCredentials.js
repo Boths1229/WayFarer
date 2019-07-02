@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.validateRegisterationCredentials = void 0;
+exports.validateSigninCredentials = exports.validateRegisterationCredentials = void 0;
 
 var _validatorjs = _interopRequireDefault(require("validatorjs"));
 
@@ -40,3 +40,13 @@ var validateRegisterationCredentials = function validateRegisterationCredentials
 };
 
 exports.validateRegisterationCredentials = validateRegisterationCredentials;
+
+var validateSigninCredentials = function validateSigninCredentials(req, res, next) {
+  var rules = {
+    email: 'required|email',
+    password: 'required|min:6'
+  };
+  return validateCredentials(req, res, next, rules);
+};
+
+exports.validateSigninCredentials = validateSigninCredentials;
