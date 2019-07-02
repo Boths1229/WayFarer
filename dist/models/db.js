@@ -25,9 +25,8 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-_dotenv["default"].config();
+_dotenv["default"].config(); // const env = process.env.NODE_ENV;
 
-var env = process.env.NODE_ENV;
 
 var Model =
 /*#__PURE__*/
@@ -37,7 +36,7 @@ function () {
 
     this.table = table;
     this.pool = new _pg.Pool({
-      connectionString: _config["default"].databaseUrl[env]
+      connectionString: process.env.DB_URL
     });
     this.pool.on('error', function (err, client) {
       console.log('error');

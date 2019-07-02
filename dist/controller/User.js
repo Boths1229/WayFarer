@@ -151,6 +151,76 @@ function () {
 
       return signUp;
     }()
+  }, {
+    key: "signIn",
+    value: function () {
+      var _signIn = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee3(req, res) {
+        var _req$body2, email, password, registered, isAdmin, token;
+
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                _req$body2 = req.body, email = _req$body2.email, password = _req$body2.password;
+                _context3.next = 4;
+                return User.model().select('*', 'email=$1', [email]);
+
+              case 4:
+                registered = _context3.sent;
+
+                if (!(registered && _password["default"].decryptPassword(password, registered.password))) {
+                  _context3.next = 9;
+                  break;
+                }
+
+                isAdmin = registered.isadmin;
+                token = (0, _token.createToken)({
+                  email: email,
+                  password: password,
+                  isAdmin: isAdmin
+                });
+                return _context3.abrupt("return", res.status(200).json({
+                  status: 'success',
+                  data: {
+                    user_id: registered.user_id,
+                    token: token,
+                    first_name: registered.first_name,
+                    last_name: registered.last_name,
+                    email: registered.email
+                  }
+                }));
+
+              case 9:
+                return _context3.abrupt("return", res.status(401).json({
+                  status: 'error',
+                  message: 'invalid email or password'
+                }));
+
+              case 12:
+                _context3.prev = 12;
+                _context3.t0 = _context3["catch"](0);
+                return _context3.abrupt("return", res.status(500).json({
+                  error: 'server error',
+                  e: _context3.t0
+                }));
+
+              case 15:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 12]]);
+      }));
+
+      function signIn(_x5, _x6) {
+        return _signIn.apply(this, arguments);
+      }
+
+      return signIn;
+    }()
   }]);
 
   return User;
