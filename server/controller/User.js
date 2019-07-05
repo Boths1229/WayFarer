@@ -50,12 +50,12 @@ class User {
       return res.status(201).json({
         status: 'success',
         data: {
-          user_id: rows.user_id,
-          is_admin: rows.is_admin,
+          user_id: rows[0].user_id,
+          is_admin: rows[0].is_admin,
           token,
-          first_name: rows.first_name,
-          last_name: rows.last_name,
-          email: rows.email
+          first_name: rows[0].first_name,
+          last_name: rows[0].last_name,
+          email: rows[0].email
         }
       });
     } catch (e) {
@@ -71,19 +71,18 @@ class User {
       const { email, password } = req.body;
       const registered = await User.model().select('*', 'email=$1', [email]);
 
-      if (registered && pass.decryptPassword(password, registered.password)) {
-        const isAdmin = registered.is_admin;
+      if (registered[0] && pass.decryptPassword(password, registered[0].password)) {
+        const isAdmin = registered[0].is_admin;
         const token = createToken({ email, password, isAdmin });
-        console.log(isAdmin);
         return res.status(200).json({
           status: 'success',
           data: {
-            user_id: registered.user_id,
-            is_admin: registered.is_admin,
+            user_id: registered[0].user_id,
+            is_admin: registered[0].is_admin,
             token,
-            first_name: registered.first_name,
-            last_name: registered.last_name,
-            email: registered.email
+            first_name: registered[0].first_name,
+            last_name: registered[0].last_name,
+            email: registered[0].email
           }
         });
       } return res.status(401).json({

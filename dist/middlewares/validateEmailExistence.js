@@ -34,7 +34,7 @@ function () {
           case 4:
             user = _context.sent;
 
-            if (!user) {
+            if (!user[0]) {
               _context.next = 7;
               break;
             }

@@ -64,8 +64,8 @@ describe('Trip test', () => {
     });
   });
 
-  describe('POST should return is_admin is invalid api/v1/trips', () => {
-    it('should return error when is_admin is false', (done) => {
+  describe('POST fare incomplete api/v1/trips', () => {
+    it('should return error when there is no fare', (done) => {
       chai.request(server)
         .post('/api/v1/trips')
         .set('Accept', 'application/json')
@@ -77,6 +77,26 @@ describe('Trip test', () => {
           expect(res.body).to.be.an('object');
           expect(res.statusCode).to.equal(400);
           expect(fare[0]).to.equal('the fare is required');
+          done();
+        });
+    });
+  });
+
+  describe('GET all trips /api/v1/trips', () => {
+    it('should return all trips', (done) => {
+      chai.request(server)
+        .get('/api/v1/trips')
+        .set('Accept', 'application/json')
+        .end((err, res) => {
+          expect(res.body).to.be.an('object');
+          expect(res.status).to.equal('success');
+          expect(res.body.data.trip_id).to.equal(1);
+          expect(res.body.data.bus_id).to.equal(1);
+          expect(res.body.data.origin).to.equal('yaba');
+          expect(res.body.data.destination).to.equal('ikeja');
+          expect(res.body.data.trip_date).to.be.a('string');
+          expect(res.body.data.fare).to.equal(100);
+          expect(res.body.data.status).to.equal('active');
           done();
         });
     });
