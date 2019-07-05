@@ -68,7 +68,7 @@ function () {
               case 4:
                 _ref = _context.sent;
                 rows = _ref.rows;
-                return _context.abrupt("return", rows[0]);
+                return _context.abrupt("return", rows);
 
               case 9:
                 _context.prev = 9;
@@ -110,7 +110,7 @@ function () {
               case 5:
                 _ref2 = _context2.sent;
                 rows = _ref2.rows;
-                return _context2.abrupt("return", rows[0]);
+                return _context2.abrupt("return", rows);
 
               case 10:
                 _context2.prev = 10;
@@ -151,7 +151,7 @@ function () {
               case 4:
                 _ref3 = _context3.sent;
                 rows = _ref3.rows;
-                return _context3.abrupt("return", rows[0]);
+                return _context3.abrupt("return", rows);
 
               case 9:
                 _context3.prev = 9;
