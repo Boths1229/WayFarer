@@ -5,12 +5,10 @@ import { Pool } from 'pg';
 import dotenv from 'dotenv';
 import server from '../server';
 import users from '../models/users';
-import config from '../config/config';
 
 
 chai.use(chaiHttp);
 dotenv.config();
-// const env = process.env.NODE_ENV;
 const pool = new Pool({ connectionString: process.env.DB_URL });
 
 pool.on('error', (err) => {

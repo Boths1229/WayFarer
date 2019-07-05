@@ -52,7 +52,8 @@ INSERT INTO Bus (
 DROP TABLE IF EXISTS Trip CASCADE;
 CREATE TABLE Trip(
     id SERIAL NOT NULL PRIMARY KEY,
-	bus_id INTEGER NOT NULL,
+    trip_id SERIAL,
+    bus_id SERIAL,
 	origin VARCHAR NOT NULL,
 	destination VARCHAR NOT NULL,
 	trip_date TIMESTAMP DEFAULT NOW(),
@@ -60,13 +61,14 @@ CREATE TABLE Trip(
 	status VARCHAR DEFAULT 'active'
 ); 
 INSERT INTO Trip (
-  id, bus_id, origin, destination, fare, status )
+  id, trip_id, bus_id, origin, destination, fare, status )
    VALUES (
-       20,
-       100,
+       1,
+       1,
+       1,
        'yaba',
-       'egbeda',
-       00.0,
+       'ikeja',
+       100,
        'active'
 );
 DROP TABLE IF EXISTS Booking CASCADE;

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.validateSigninCredentials = exports.validateRegisterationCredentials = void 0;
+exports.validateTripCredentials = exports.validateSigninCredentials = exports.validateRegisterationCredentials = void 0;
 
 var _validatorjs = _interopRequireDefault(require("validatorjs"));
 
@@ -50,3 +50,14 @@ var validateSigninCredentials = function validateSigninCredentials(req, res, nex
 };
 
 exports.validateSigninCredentials = validateSigninCredentials;
+
+var validateTripCredentials = function validateTripCredentials(req, res, next) {
+  var rules = {
+    origin: 'required',
+    destination: 'required',
+    fare: 'required'
+  };
+  return validateCredentials(req, res, next, rules);
+};
+
+exports.validateTripCredentials = validateTripCredentials;

@@ -14,14 +14,11 @@ var _server = _interopRequireDefault(require("../server"));
 
 var _users = _interopRequireDefault(require("../models/users"));
 
-var _config = _interopRequireDefault(require("../config/config"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 _chai["default"].use(_chaiHttp["default"]);
 
-_dotenv["default"].config(); // const env = process.env.NODE_ENV;
-
+_dotenv["default"].config();
 
 var pool = new _pg.Pool({
   connectionString: process.env.DB_URL

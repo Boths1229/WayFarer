@@ -172,20 +172,22 @@ function () {
                 registered = _context3.sent;
 
                 if (!(registered && _password["default"].decryptPassword(password, registered.password))) {
-                  _context3.next = 9;
+                  _context3.next = 10;
                   break;
                 }
 
-                isAdmin = registered.isadmin;
+                isAdmin = registered.is_admin;
                 token = (0, _token.createToken)({
                   email: email,
                   password: password,
                   isAdmin: isAdmin
                 });
+                console.log(isAdmin);
                 return _context3.abrupt("return", res.status(200).json({
                   status: 'success',
                   data: {
                     user_id: registered.user_id,
+                    is_admin: registered.is_admin,
                     token: token,
                     first_name: registered.first_name,
                     last_name: registered.last_name,
@@ -193,26 +195,26 @@ function () {
                   }
                 }));
 
-              case 9:
+              case 10:
                 return _context3.abrupt("return", res.status(401).json({
                   status: 'error',
                   message: 'invalid email or password'
                 }));
 
-              case 12:
-                _context3.prev = 12;
+              case 13:
+                _context3.prev = 13;
                 _context3.t0 = _context3["catch"](0);
                 return _context3.abrupt("return", res.status(500).json({
                   error: 'server error',
                   e: _context3.t0
                 }));
 
-              case 15:
+              case 16:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 12]]);
+        }, _callee3, null, [[0, 13]]);
       }));
 
       function signIn(_x5, _x6) {
