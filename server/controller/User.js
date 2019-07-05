@@ -72,12 +72,14 @@ class User {
       const registered = await User.model().select('*', 'email=$1', [email]);
 
       if (registered && pass.decryptPassword(password, registered.password)) {
-        const isAdmin = registered.isadmin;
+        const isAdmin = registered.is_admin;
         const token = createToken({ email, password, isAdmin });
+        console.log(isAdmin);
         return res.status(200).json({
           status: 'success',
           data: {
             user_id: registered.user_id,
+            is_admin: registered.is_admin,
             token,
             first_name: registered.first_name,
             last_name: registered.last_name,

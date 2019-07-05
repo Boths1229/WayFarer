@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/Boths1229/WayFarer.svg?branch=develop)](https://travis-ci.org/Boths1229/WayFarer)
-
+[![Maintainability](https://api.codeclimate.com/v1/badges/afa387c9c6859367c3ab/maintainability)](https://codeclimate.com/github/Boths1229/WayFarer/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/afa387c9c6859367c3ab/test_coverage)](https://codeclimate.com/github/Boths1229/WayFarer/test_coverage)
+[![GitHub license](https://img.shields.io/github/license/Boths1229/WayFarer.svg)](https://github.com/Boths1229/WayFarer/blob/develop/LICENSE)
 # WayFarer
  WayFarer is a public bus transportation booking server. Where Clients book tickets for their trips, can see all their bookings and have the right to cancel any booking they do not want to use again.
 

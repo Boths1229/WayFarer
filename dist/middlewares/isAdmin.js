@@ -14,6 +14,7 @@ var isAdmin = function isAdmin(req, res, next) {
 
   if (!token) {
     return res.status(403).json({
+      status: 'error',
       message: 'No token found'
     });
   }
@@ -21,6 +22,7 @@ var isAdmin = function isAdmin(req, res, next) {
   return _jsonwebtoken["default"].verify(token, 'secret', function (error, user) {
     if (error) {
       return res.status(401).json({
+        status: 'error',
         message: 'token is invalid'
       });
     }
@@ -29,6 +31,7 @@ var isAdmin = function isAdmin(req, res, next) {
 
     if (req.user.isAdmin === false) {
       return res.status(403).json({
+        status: 'error',
         message: 'your not allowed for this'
       });
     }

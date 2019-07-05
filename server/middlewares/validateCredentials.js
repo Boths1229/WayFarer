@@ -35,3 +35,12 @@ export const validateSigninCredentials = (req, res, next) => {
   };
   return validateCredentials(req, res, next, rules);
 };
+
+export const validateTripCredentials = (req, res, next) => {
+  const rules = {
+    origin: 'required',
+    destination: 'required',
+    fare: 'required'
+  };
+  return validateCredentials(req, res, next, rules);
+};
