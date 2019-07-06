@@ -151,7 +151,7 @@ function () {
               case 4:
                 _ref3 = _context3.sent;
                 rows = _ref3.rows;
-                return _context3.abrupt("return", rows[0]);
+                return _context3.abrupt("return", rows);
 
               case 9:
                 _context3.prev = 9;

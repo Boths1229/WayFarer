@@ -6,6 +6,10 @@ var _chaiHttp = _interopRequireDefault(require("chai-http"));
 
 var _child_process = require("child_process");
 
+var _pg = require("pg");
+
+var _dotenv = _interopRequireDefault(require("dotenv"));
+
 var _server = _interopRequireDefault(require("../server"));
 
 var _trip = _interopRequireDefault(require("../models/trip"));
@@ -13,7 +17,18 @@ var _trip = _interopRequireDefault(require("../models/trip"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 _chai["default"].use(_chaiHttp["default"]);
+<<<<<<< HEAD
+=======
 
+_dotenv["default"].config();
+>>>>>>> develop
+
+var pool = new _pg.Pool({
+  connectionString: process.env.DB_URL
+});
+pool.on('error', function (err) {
+  console.log(err);
+});
 var expect = _chai["default"].expect;
 describe('Trip test', function () {
   before(function (done) {
@@ -49,8 +64,8 @@ describe('Trip test', function () {
       });
     });
   });
-  describe('POST should return is_admin is invalid api/v1/trips', function () {
-    it('should return error when is_admin is false', function (done) {
+  describe('POST fare incomplete api/v1/trips', function () {
+    it('should return error when there is no fare', function (done) {
       _chai["default"].request(_server["default"]).post('/api/v1/trips').set('Accept', 'application/json').send(_trip["default"][2]).end(function (err, res) {
         var fare = res.body.errors.fare;
         expect(res.body).to.be.an('object');
@@ -76,6 +91,7 @@ describe('Trip test', function () {
       });
     });
   });
+<<<<<<< HEAD
   describe('PATCH Trip cancelled /api/v1/trips/:tripId', function () {
     it('should return trip cancelled successfully', function (done) {
       _chai["default"].request(_server["default"]).patch('/api/v1/trips/1').set('Accept', 'application/json').send({
@@ -95,4 +111,6 @@ describe('Trip test', function () {
       });
     });
   });
+=======
+>>>>>>> develop
 });

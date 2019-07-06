@@ -47,7 +47,7 @@ class Model {
     const query = `UPDATE ${this.table} SET ${columns} WHERE ${clause} returning *`;
     try {
       const { rows } = await this.pool.query(query, values);
-      return rows[0];
+      return rows;
     } catch (err) {
       throw err;
     }

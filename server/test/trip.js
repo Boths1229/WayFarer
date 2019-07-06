@@ -55,8 +55,8 @@ describe('Trip test', () => {
     });
   });
 
-  describe('POST should return is_admin is invalid api/v1/trips', () => {
-    it('should return error when is_admin is false', (done) => {
+  describe('POST fare incomplete api/v1/trips', () => {
+    it('should return error when there is no fare', (done) => {
       chai.request(server)
         .post('/api/v1/trips')
         .set('Accept', 'application/json')

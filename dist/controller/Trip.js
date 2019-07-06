@@ -141,6 +141,7 @@ function () {
 
       return getAllTrips;
     }()
+<<<<<<< HEAD
   }, {
     key: "cancelTrip",
     value: function () {
@@ -206,6 +207,8 @@ function () {
 
       return cancelTrip;
     }()
+=======
+>>>>>>> develop
   }]);
 
   return Trip;
