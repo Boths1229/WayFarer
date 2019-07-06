@@ -26,7 +26,7 @@ class Model {
         query = `SELECT ${columns} FROM ${this.table}`;
       }
       const { rows } = await this.pool.query(query, values);
-      return rows[0];
+      return rows;
     } catch (err) {
       throw err;
     }
@@ -37,7 +37,7 @@ class Model {
     try {
       console.log(query);
       const { rows } = await this.pool.query(query, values);
-      return rows[0];
+      return rows;
     } catch (err) {
       throw err;
     }
@@ -48,6 +48,16 @@ class Model {
     try {
       const { rows } = await this.pool.query(query, values);
       return rows[0];
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async delete(columns, clause, values) {
+    const query = `DELETE FROM ${this.table} WHERE ${clause} returning *`;
+    try {
+      const { rows } = await this.pool.query(query,values);
+      return rows;
     } catch (err) {
       throw err;
     }

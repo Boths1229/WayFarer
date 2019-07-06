@@ -1,20 +1,11 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import { exec } from 'child_process';
-import { Pool } from 'pg';
-import dotenv from 'dotenv';
 import server from '../server';
 import users from '../models/users';
 
 
 chai.use(chaiHttp);
-dotenv.config();
-const pool = new Pool({ connectionString: process.env.DB_URL });
-
-pool.on('error', (err) => {
-  console.log(err);
-});
-
 
 const { expect } = chai;
 describe('User test', () => {

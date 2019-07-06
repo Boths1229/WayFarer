@@ -6,7 +6,7 @@ const validateEmailExistence = async (req, res, next) => {
   try {
     const { email } = req.body;
     const user = await model.select('*', 'email=$1', [email]);
-    if (user) {
+    if (user[0]) {
       return res.status(409).json({
         status: 'error',
         message: 'this email is already in use'

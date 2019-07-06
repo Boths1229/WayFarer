@@ -15,15 +15,18 @@ var _validateCredentials = require("../middlewares/validateCredentials");
 
 var _validateEmailExistence = _interopRequireDefault(require("../middlewares/validateEmailExistence"));
 
+var _token = require("../helper/token");
+
 var _isAdmin = require("../middlewares/isAdmin");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-// import { verifyToken } from '../helper/token';
 var signUp = _User["default"].signUp,
     signIn = _User["default"].signIn,
     getAllUsers = _User["default"].getAllUsers;
-var createTrip = _Trip["default"].createTrip;
+var createTrip = _Trip["default"].createTrip,
+    getAllTrips = _Trip["default"].getAllTrips,
+    cancelTrip = _Trip["default"].cancelTrip;
 
 var router = _express["default"].Router(); // User
 
@@ -33,5 +36,7 @@ router.post('/auth/signin', _validateCredentials.validateSigninCredentials, sign
 router.get('/users', _isAdmin.isAdmin, getAllUsers); // Trip
 
 router.post('/trips', _validateCredentials.validateTripCredentials, _isAdmin.isAdmin, createTrip);
+router.get('/trips', _token.verifyToken, getAllTrips);
+router.patch('/trips/:tripId', _isAdmin.isAdmin, cancelTrip);
 var _default = router;
 exports["default"] = _default;

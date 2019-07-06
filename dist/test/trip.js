@@ -12,14 +12,7 @@ var _trip = _interopRequireDefault(require("../models/trip"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-// import { Pool } from 'pg';
-// import dotenv from 'dotenv';
-_chai["default"].use(_chaiHttp["default"]); // dotenv.config();
-// const pool = new Pool({ connectionString: process.env.DB_URL });
-// pool.on('error', (err) => {
-//   console.log(err);
-// });
-
+_chai["default"].use(_chaiHttp["default"]);
 
 var expect = _chai["default"].expect;
 describe('Trip test', function () {
@@ -63,6 +56,41 @@ describe('Trip test', function () {
         expect(res.body).to.be.an('object');
         expect(res.statusCode).to.equal(400);
         expect(fare[0]).to.equal('the fare is required');
+        done();
+      });
+    });
+  });
+  describe('GET all trips /api/v1/trips', function () {
+    it('should return all trips', function (done) {
+      _chai["default"].request(_server["default"]).get('/api/v1/trips').set('Accept', 'application/json').end(function (err, res) {
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.equal('success');
+        expect(res.body.data.trip_id).to.equal(1);
+        expect(res.body.data.bus_id).to.equal(1);
+        expect(res.body.data.origin).to.equal('yaba');
+        expect(res.body.data.destination).to.equal('ikeja');
+        expect(res.body.data.trip_date).to.be.a('string');
+        expect(res.body.data.fare).to.equal(100);
+        expect(res.body.data.status).to.equal('active');
+        done();
+      });
+    });
+  });
+  describe('PATCH Trip cancelled /api/v1/trips/:tripId', function () {
+    it('should return trip cancelled successfully', function (done) {
+      _chai["default"].request(_server["default"]).patch('/api/v1/trips/1').set('Accept', 'application/json').send({
+        status: 'cancelled'
+      }).end(function (err, res) {
+        expect(res.body).to.be.an('object');
+        expect(res.status).to.equal('success');
+        expect(res.body.data.message).to.equal('Trip Cancelled Successfully');
+        expect(res.body.data.trip_id).to.equal(1);
+        expect(res.body.data.bus_id).to.equal(1);
+        expect(res.body.data.origin).to.equal('yaba');
+        expect(res.body.data.destination).to.equal('ikeja');
+        expect(res.body.data.trip_date).to.equal("2019-07-05T22:46:16.312Z");
+        expect(res.body.data.fare).to.equal(100);
+        expect(res.body.data.status).to.equal('cancelled');
         done();
       });
     });

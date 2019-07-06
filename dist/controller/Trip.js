@@ -53,13 +53,13 @@ function () {
                 return _context.abrupt("return", res.status(201).json({
                   status: 'success',
                   data: {
-                    trip_id: trip.trip_id,
-                    bus_id: trip.bus_id,
-                    origin: trip.origin,
-                    destination: trip.destination,
-                    trip_date: trip.trip_date,
-                    fare: trip.fare,
-                    status: trip.status
+                    trip_id: trip[0].trip_id,
+                    bus_id: trip[0].bus_id,
+                    origin: trip[0].origin,
+                    destination: trip[0].destination,
+                    trip_date: trip[0].trip_date,
+                    fare: trip[0].fare,
+                    status: trip[0].status
                   }
                 }));
 
@@ -84,6 +84,127 @@ function () {
       }
 
       return createTrip;
+    }()
+  }, {
+    key: "getAllTrips",
+    value: function () {
+      var _getAllTrips = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2(req, res) {
+        var rows;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+                _context2.next = 3;
+                return Trip.model().select('trip_id, bus_id, origin, destination, trip_date, fare, status');
+
+              case 3:
+                rows = _context2.sent;
+
+                if (!(rows.length === 0)) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                return _context2.abrupt("return", res.status(400).json({
+                  status: 'error',
+                  message: 'No trip found'
+                }));
+
+              case 6:
+                return _context2.abrupt("return", res.status(200).json({
+                  status: 'success',
+                  data: rows
+                }));
+
+              case 9:
+                _context2.prev = 9;
+                _context2.t0 = _context2["catch"](0);
+                return _context2.abrupt("return", res.status(500).json({
+                  error: 'server error',
+                  e: _context2.t0
+                }));
+
+              case 12:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 9]]);
+      }));
+
+      function getAllTrips(_x3, _x4) {
+        return _getAllTrips.apply(this, arguments);
+      }
+
+      return getAllTrips;
+    }()
+  }, {
+    key: "cancelTrip",
+    value: function () {
+      var _cancelTrip = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee3(req, res) {
+        var tripId, rows;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                tripId = req.params.tripId;
+                _context3.next = 4;
+                return Trip.model().update('status=$1', 'trip_id=$2', ['cancelled', tripId]);
+
+              case 4:
+                rows = _context3.sent;
+
+                if (!rows) {
+                  _context3.next = 7;
+                  break;
+                }
+
+                return _context3.abrupt("return", res.status(200).json({
+                  status: 'success',
+                  data: {
+                    message: 'Trip Cancelled Successfully',
+                    trip_id: rows.trip_id,
+                    bus_id: rows.bus_id,
+                    origin: rows.origin,
+                    destination: rows.destination,
+                    trip_date: rows.trip_date,
+                    fare: rows.fare,
+                    status: rows.status
+                  }
+                }));
+
+              case 7:
+                return _context3.abrupt("return", res.status(404).json({
+                  status: 'error',
+                  message: 'trip not found'
+                }));
+
+              case 10:
+                _context3.prev = 10;
+                _context3.t0 = _context3["catch"](0);
+                return _context3.abrupt("return", res.status(500).json({
+                  error: 'server error'
+                }));
+
+              case 13:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 10]]);
+      }));
+
+      function cancelTrip(_x5, _x6) {
+        return _cancelTrip.apply(this, arguments);
+      }
+
+      return cancelTrip;
     }()
   }]);
 
