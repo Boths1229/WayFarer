@@ -57,6 +57,37 @@ class Trip {
         }
       }
     
+      static async cancelTrip(req, res) {
+        try {
+          const { tripId } = req.params;
+          const rows = await Trip.model().update('status=$1', 'trip_id=$2', ['cancelled', tripId]);
+    
+          if (rows) {
+            return res.status(200).json({
+              status: 'success',
+              data: {
+                message: 'Trip Cancelled Successfully',
+                trip_id: rows.trip_id,
+                bus_id: rows.bus_id,
+                origin: rows.origin,
+                destination: rows.destination,
+                trip_date: rows.trip_date,
+                fare: rows.fare,
+                status: rows.status
+              },
+            });
+          }
+
+          return res.status(404).json({
+            status: 'error',  
+            message: 'trip not found'
+          });
+        } catch (e) {
+          return res.status(500).json({
+            error: 'server error'
+          });
+        }
+      }
   }
   
   export default Trip;

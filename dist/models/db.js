@@ -172,6 +172,47 @@ function () {
 
       return update;
     }()
+  }, {
+    key: "delete",
+    value: function () {
+      var _delete2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee4(columns, clause, values) {
+        var query, _ref4, rows;
+
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                query = "DELETE FROM ".concat(this.table, " WHERE ").concat(clause, " returning *");
+                _context4.prev = 1;
+                _context4.next = 4;
+                return this.pool.query(query, values);
+
+              case 4:
+                _ref4 = _context4.sent;
+                rows = _ref4.rows;
+                return _context4.abrupt("return", rows);
+
+              case 9:
+                _context4.prev = 9;
+                _context4.t0 = _context4["catch"](1);
+                throw _context4.t0;
+
+              case 12:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this, [[1, 9]]);
+      }));
+
+      function _delete(_x10, _x11, _x12) {
+        return _delete2.apply(this, arguments);
+      }
+
+      return _delete;
+    }()
   }]);
 
   return Model;

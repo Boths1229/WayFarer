@@ -1,20 +1,11 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import { exec } from 'child_process';
-import { Pool } from 'pg';
-import dotenv from 'dotenv';
 import server from '../server';
 import trip from '../models/trip';
 
 
 chai.use(chaiHttp);
-dotenv.config();
-const pool = new Pool({ connectionString: process.env.DB_URL });
-
-pool.on('error', (err) => {
-  console.log(err);
-});
-
 
 const { expect } = chai;
 describe('Trip test', () => {
@@ -97,6 +88,30 @@ describe('Trip test', () => {
           expect(res.body.data.trip_date).to.be.a('string');
           expect(res.body.data.fare).to.equal(100);
           expect(res.body.data.status).to.equal('active');
+          done();
+        });
+    });
+  });
+
+  describe('PATCH Trip cancelled /api/v1/trips/:tripId', () => {
+    it('should return trip cancelled successfully', (done) => {
+      chai.request(server)
+        .patch('/api/v1/trips/1')
+        .set('Accept', 'application/json')
+        .send({
+          status: 'cancelled',
+        })
+        .end((err, res) => {
+          expect(res.body).to.be.an('object');
+          expect(res.status).to.equal('success');
+          expect(res.body.data.message).to.equal('Trip Cancelled Successfully');
+          expect(res.body.data.trip_id).to.equal(1);
+          expect(res.body.data.bus_id).to.equal(1);
+          expect(res.body.data.origin).to.equal('yaba');
+          expect(res.body.data.destination).to.equal('ikeja');
+          expect(res.body.data.trip_date).to.equal("2019-07-05T22:46:16.312Z");
+          expect(res.body.data.fare).to.equal(100);
+          expect(res.body.data.status).to.equal('cancelled');
           done();
         });
     });

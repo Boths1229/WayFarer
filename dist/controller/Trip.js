@@ -141,6 +141,74 @@ function () {
 
       return getAllTrips;
     }()
+<<<<<<< HEAD
+  }, {
+    key: "cancelTrip",
+    value: function () {
+      var _cancelTrip = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee3(req, res) {
+        var tripId, rows;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                tripId = req.params.tripId;
+                _context3.next = 4;
+                return Trip.model().update('status=$1', 'trip_id=$2', ['cancelled', tripId]);
+
+              case 4:
+                rows = _context3.sent;
+
+                if (!rows) {
+                  _context3.next = 7;
+                  break;
+                }
+
+                return _context3.abrupt("return", res.status(200).json({
+                  status: 'success',
+                  data: {
+                    message: 'Trip Cancelled Successfully',
+                    trip_id: rows.trip_id,
+                    bus_id: rows.bus_id,
+                    origin: rows.origin,
+                    destination: rows.destination,
+                    trip_date: rows.trip_date,
+                    fare: rows.fare,
+                    status: rows.status
+                  }
+                }));
+
+              case 7:
+                return _context3.abrupt("return", res.status(404).json({
+                  status: 'error',
+                  message: 'trip not found'
+                }));
+
+              case 10:
+                _context3.prev = 10;
+                _context3.t0 = _context3["catch"](0);
+                return _context3.abrupt("return", res.status(500).json({
+                  error: 'server error'
+                }));
+
+              case 13:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 10]]);
+      }));
+
+      function cancelTrip(_x5, _x6) {
+        return _cancelTrip.apply(this, arguments);
+      }
+
+      return cancelTrip;
+    }()
+=======
+>>>>>>> develop
   }]);
 
   return Trip;

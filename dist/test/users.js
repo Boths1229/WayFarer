@@ -6,10 +6,6 @@ var _chaiHttp = _interopRequireDefault(require("chai-http"));
 
 var _child_process = require("child_process");
 
-var _pg = require("pg");
-
-var _dotenv = _interopRequireDefault(require("dotenv"));
-
 var _server = _interopRequireDefault(require("../server"));
 
 var _users = _interopRequireDefault(require("../models/users"));
@@ -18,14 +14,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 _chai["default"].use(_chaiHttp["default"]);
 
-_dotenv["default"].config();
-
-var pool = new _pg.Pool({
-  connectionString: process.env.DB_URL
-});
-pool.on('error', function (err) {
-  console.log(err);
-});
 var expect = _chai["default"].expect;
 describe('User test', function () {
   before(function (done) {

@@ -12,7 +12,11 @@ import { isAdmin } from '../middlewares/isAdmin';
 const {
   signUp, signIn, getAllUsers
 } = User;
+<<<<<<< HEAD
+const { createTrip, getAllTrips, cancelTrip 
+=======
 const { createTrip, getAllTrips 
+>>>>>>> develop
 } = Trip;
 
 const router = express.Router();
@@ -24,5 +28,9 @@ router.get('/users', isAdmin, getAllUsers);
 // Trip
 router.post('/trips', validateTripCredentials, isAdmin, createTrip);
 router.get('/trips', verifyToken, getAllTrips);
+<<<<<<< HEAD
+router.patch('/trips/:tripId', isAdmin, cancelTrip);
+=======
+>>>>>>> develop
 
 export default router;

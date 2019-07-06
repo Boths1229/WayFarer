@@ -52,6 +52,16 @@ class Model {
       throw err;
     }
   }
+
+  async delete(columns, clause, values) {
+    const query = `DELETE FROM ${this.table} WHERE ${clause} returning *`;
+    try {
+      const { rows } = await this.pool.query(query,values);
+      return rows;
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 export default Model;
