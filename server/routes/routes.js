@@ -15,7 +15,8 @@ const {
 } = User;
 const { createTrip, getAllTrips, cancelTrip 
 } = Trip;
-const { seatBooking } = Booking;
+const { seatBooking, getAllBookings
+} = Booking;
 
 const router = express.Router();
 // User
@@ -30,5 +31,6 @@ router.patch('/trips/:tripId', isAdmin, cancelTrip);
 
 // Booking
 router.post('/bookings', validateBookingCredentials, verifyToken, seatBooking);
+router.get('/bookings', verifyToken, getAllBookings);
 
 export default router;
