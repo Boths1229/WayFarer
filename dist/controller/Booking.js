@@ -108,6 +108,101 @@ function () {
 
       return seatBooking;
     }()
+  }, {
+    key: "getAllBookings",
+    value: function () {
+      var _getAllBookings = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2(req, res) {
+        var rows, _rows;
+
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.prev = 0;
+
+                if (!(req.user.isAdmin === false)) {
+                  _context2.next = 8;
+                  break;
+                }
+
+                _context2.next = 4;
+                return Book.model().select('booking_id, user_id, trip_id, bus_id, trip_date, seat_number, first_name, last_name, email', "user_id=".concat(req.user.userId));
+
+              case 4:
+                rows = _context2.sent;
+
+                if (!(rows.length === 0)) {
+                  _context2.next = 7;
+                  break;
+                }
+
+                return _context2.abrupt("return", res.status(400).json({
+                  status: 'error',
+                  message: 'No booking found'
+                }));
+
+              case 7:
+                return _context2.abrupt("return", res.status(200).json({
+                  status: 'success',
+                  data: rows
+                }));
+
+              case 8:
+                if (!(req.user.isAdmin === true)) {
+                  _context2.next = 15;
+                  break;
+                }
+
+                _context2.next = 11;
+                return Book.model().select('booking_id, user_id, trip_id, bus_id, trip_date, seat_number, first_name, last_name, email');
+
+              case 11:
+                _rows = _context2.sent;
+
+                if (!(_rows.length === 0)) {
+                  _context2.next = 14;
+                  break;
+                }
+
+                return _context2.abrupt("return", res.status(400).json({
+                  status: 'error',
+                  message: 'No booking found'
+                }));
+
+              case 14:
+                return _context2.abrupt("return", res.status(200).json({
+                  status: 'success',
+                  data: _rows
+                }));
+
+              case 15:
+                _context2.next = 20;
+                break;
+
+              case 17:
+                _context2.prev = 17;
+                _context2.t0 = _context2["catch"](0);
+                return _context2.abrupt("return", res.status(500).json({
+                  error: 'server error',
+                  e: _context2.t0
+                }));
+
+              case 20:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, null, [[0, 17]]);
+      }));
+
+      function getAllBookings(_x3, _x4) {
+        return _getAllBookings.apply(this, arguments);
+      }
+
+      return getAllBookings;
+    }()
   }]);
 
   return Book;

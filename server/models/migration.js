@@ -78,7 +78,7 @@ CREATE TABLE Booking(
 	trip_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
     bus_id INTEGER NOT NULL,
-    created_on TIMESTAMP DEFAULT NOW(),
+    trip_date TIMESTAMP DEFAULT NOW(),
     seat_number SERIAL,
     first_name VARCHAR NOT NULL,
     last_name VARCHAR NOT NULL,

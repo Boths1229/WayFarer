@@ -47,6 +47,48 @@ class Book {
           });
         }
       }
+      static async getAllBookings(req, res) {
+        try {
+            if ( req.user.isAdmin === false ) {    
+                const rows = await Book.model().select('booking_id, user_id, trip_id, bus_id, trip_date, seat_number, first_name, last_name, email', `user_id=${req.user.userId}`);
+                
+                if (rows.length === 0) {
+                  return res.status(400).json({
+                    status: 'error',  
+                    message: 'No booking found'
+                  });
+                }
+      
+                return res.status(200).json({
+                  status: 'success',
+                  data: rows,
+          
+                });
+              }
+           if ( req.user.isAdmin === true ) {    
+          const rows = await Book.model().select('booking_id, user_id, trip_id, bus_id, trip_date, seat_number, first_name, last_name, email');
+          
+          if (rows.length === 0) {
+            return res.status(400).json({
+              status: 'error',  
+              message: 'No booking found'
+            });
+          }
+
+          return res.status(200).json({
+            status: 'success',
+            data: rows,
+    
+          });
+        }
+        
+        } catch (e) {
+          return res.status(500).json({
+            error: 'server error',
+            e
+          });
+        }
+      }
   }
   
   export default Book;
