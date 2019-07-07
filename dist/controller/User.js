@@ -157,7 +157,7 @@ function () {
       var _signIn = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee3(req, res) {
-        var _req$body2, email, password, registered, isAdmin, token;
+        var _req$body2, email, password, registered, isAdmin, userId, firstName, lastName, token;
 
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
@@ -172,15 +172,21 @@ function () {
                 registered = _context3.sent;
 
                 if (!(registered[0] && _password["default"].decryptPassword(password, registered[0].password))) {
-                  _context3.next = 9;
+                  _context3.next = 12;
                   break;
                 }
 
                 isAdmin = registered[0].is_admin;
+                userId = registered[0].user_id;
+                firstName = registered[0].first_name;
+                lastName = registered[0].last_name;
                 token = (0, _token.createToken)({
                   email: email,
                   password: password,
-                  isAdmin: isAdmin
+                  isAdmin: isAdmin,
+                  userId: userId,
+                  firstName: firstName,
+                  lastName: lastName
                 });
                 return _context3.abrupt("return", res.status(200).json({
                   status: 'success',
@@ -194,26 +200,26 @@ function () {
                   }
                 }));
 
-              case 9:
+              case 12:
                 return _context3.abrupt("return", res.status(401).json({
                   status: 'error',
                   message: 'invalid email or password'
                 }));
 
-              case 12:
-                _context3.prev = 12;
+              case 15:
+                _context3.prev = 15;
                 _context3.t0 = _context3["catch"](0);
                 return _context3.abrupt("return", res.status(500).json({
                   error: 'server error',
                   e: _context3.t0
                 }));
 
-              case 15:
+              case 18:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 12]]);
+        }, _callee3, null, [[0, 15]]);
       }));
 
       function signIn(_x5, _x6) {

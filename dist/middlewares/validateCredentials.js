@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.validateTripCredentials = exports.validateSigninCredentials = exports.validateRegisterationCredentials = void 0;
+exports.validateBookingCredentials = exports.validateTripCredentials = exports.validateSigninCredentials = exports.validateRegisterationCredentials = void 0;
 
 var _validatorjs = _interopRequireDefault(require("validatorjs"));
 
@@ -61,3 +61,12 @@ var validateTripCredentials = function validateTripCredentials(req, res, next) {
 };
 
 exports.validateTripCredentials = validateTripCredentials;
+
+var validateBookingCredentials = function validateBookingCredentials(req, res, next) {
+  var rules = {
+    trip_id: 'required'
+  };
+  return validateCredentials(req, res, next, rules);
+};
+
+exports.validateBookingCredentials = validateBookingCredentials;

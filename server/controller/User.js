@@ -73,7 +73,10 @@ class User {
 
       if (registered[0] && pass.decryptPassword(password, registered[0].password)) {
         const isAdmin = registered[0].is_admin;
-        const token = createToken({ email, password, isAdmin });
+        const userId = registered[0].user_id;
+        const firstName = registered[0].first_name;
+        const lastName = registered[0].last_name;
+        const token = createToken({ email, password, isAdmin, userId, firstName, lastName });
         return res.status(200).json({
           status: 'success',
           data: {

@@ -44,3 +44,10 @@ export const validateTripCredentials = (req, res, next) => {
   };
   return validateCredentials(req, res, next, rules);
 };
+
+export const validateBookingCredentials = (req, res, next) => {
+  const rules = {
+    trip_id: 'required'
+  };
+  return validateCredentials(req, res, next, rules);
+};

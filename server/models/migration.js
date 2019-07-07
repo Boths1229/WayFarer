@@ -74,16 +74,28 @@ INSERT INTO Trip (
 DROP TABLE IF EXISTS Booking CASCADE;
 CREATE TABLE Booking(
     id SERIAL NOT NULL PRIMARY KEY,
+    booking_id SERIAL,
 	trip_id INTEGER NOT NULL,
-	user_id INTEGER NOT NULL,
-	created_on TIMESTAMP DEFAULT NOW()
+    user_id INTEGER NOT NULL,
+    bus_id INTEGER NOT NULL,
+    created_on TIMESTAMP DEFAULT NOW(),
+    seat_number SERIAL,
+    first_name VARCHAR NOT NULL,
+    last_name VARCHAR NOT NULL,
+    email VARCHAR NOT NULL
 ); 
 INSERT INTO Booking (
-  id, trip_id, user_id )
+  id, booking_id, trip_id, user_id, bus_id, seat_number, first_name, last_name, email )
    VALUES (
-       2,
-       3,
-       4
+       1,
+       1,
+       1,
+       1,
+       1,
+       1,
+       'chuks',
+       'emma',
+       'boths'
 );
 `);
 
