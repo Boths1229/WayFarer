@@ -151,7 +151,7 @@ function () {
               case 4:
                 _ref3 = _context3.sent;
                 rows = _ref3.rows;
-                return _context3.abrupt("return", rows);
+                return _context3.abrupt("return", rows[0]);
 
               case 9:
                 _context3.prev = 9;
@@ -177,7 +177,7 @@ function () {
     value: function () {
       var _delete2 = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee4(columns, clause, values) {
+      regeneratorRuntime.mark(function _callee4(clause, values) {
         var query, _ref4, rows;
 
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
@@ -192,7 +192,7 @@ function () {
               case 4:
                 _ref4 = _context4.sent;
                 rows = _ref4.rows;
-                return _context4.abrupt("return", rows);
+                return _context4.abrupt("return", rows[0]);
 
               case 9:
                 _context4.prev = 9;
@@ -207,7 +207,7 @@ function () {
         }, _callee4, this, [[1, 9]]);
       }));
 
-      function _delete(_x10, _x11, _x12) {
+      function _delete(_x10, _x11) {
         return _delete2.apply(this, arguments);
       }
 

@@ -77,4 +77,23 @@ describe('Booking test', () => {
         });
     });
   });
+
+  describe('DELETE a booking /api/v1/bookings/:bookingId', () => {
+    it('should return booking deleted', (done) => {
+      chai.request(server)
+        .delete('/api/v1/bookings/1')
+        .set('Accept', 'application/json')
+        .end((err, res) => {
+          expect(res.body).to.be.an('object');
+          expect(res.status).to.equal('success');
+          expect(res.body.data.message).to.equal('Booking deleted successfully');
+          expect(res.body.data.booking_id).to.equal(1);
+          expect(res.body.data.trip_id).to.equal(1);
+          expect(res.body.data.bus_id).to.equal(1);
+          expect(res.body.data.trip_date).to.be.a('string');
+          expect(res.body.data.seat_number).to.equal(1);
+          done();
+        });
+    });
+  });
 });

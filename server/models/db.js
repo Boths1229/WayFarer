@@ -47,17 +47,17 @@ class Model {
     const query = `UPDATE ${this.table} SET ${columns} WHERE ${clause} returning *`;
     try {
       const { rows } = await this.pool.query(query, values);
-      return rows;
+      return rows[0];
     } catch (err) {
       throw err;
     }
   }
 
-  async delete(columns, clause, values) {
+  async delete(clause, values) {
     const query = `DELETE FROM ${this.table} WHERE ${clause} returning *`;
     try {
       const { rows } = await this.pool.query(query,values);
-      return rows;
+      return rows[0];
     } catch (err) {
       throw err;
     }

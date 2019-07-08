@@ -89,6 +89,39 @@ class Book {
           });
         }
       }
+      static async deleteBooking(req, res) {
+          try {
+            const { bookingId } = req.params;
+            const rows = await Book.model().delete('booking_id=$1', [bookingId]);
+            if (rows.user_id !== req.user.userId ) {
+                return res.status(409).json({
+                    status: 'error',
+                    message: 'you can only delete your own booking'
+                })
+            }      
+            if (rows.user_id === req.user.userId) {
+              return res.status(200).json({
+                status: 'success',
+                data: {
+                    message: 'Booking deleted successfully',
+                    booking_id: rows.booking_id,
+                    trip_id: rows.trip_id,
+                    bus_id: rows.bus_id,
+                    trip_date: rows.trip_date,
+                    seat_number: rows.seat_number
+                   },
+                 });
+              }
+            return res.status(404).json({
+              status: 'error',  
+              message: 'booking not found'
+            });
+          } catch (e) {
+            return res.status(500).json({
+              error: 'server error'
+            });
+     }
   }
+}
   
   export default Book;
