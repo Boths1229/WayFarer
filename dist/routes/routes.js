@@ -30,7 +30,8 @@ var createTrip = _Trip["default"].createTrip,
     getAllTrips = _Trip["default"].getAllTrips,
     cancelTrip = _Trip["default"].cancelTrip;
 var seatBooking = _Booking["default"].seatBooking,
-    getAllBookings = _Booking["default"].getAllBookings;
+    getAllBookings = _Booking["default"].getAllBookings,
+    deleteBooking = _Booking["default"].deleteBooking;
 
 var router = _express["default"].Router(); // User
 
@@ -45,5 +46,6 @@ router.patch('/trips/:tripId', _isAdmin.isAdmin, cancelTrip); // Booking
 
 router.post('/bookings', _validateCredentials.validateBookingCredentials, _token.verifyToken, seatBooking);
 router.get('/bookings', _token.verifyToken, getAllBookings);
+router["delete"]('/bookings/:bookingId', _token.verifyToken, deleteBooking);
 var _default = router;
 exports["default"] = _default;

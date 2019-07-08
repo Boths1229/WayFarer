@@ -203,6 +203,80 @@ function () {
 
       return getAllBookings;
     }()
+  }, {
+    key: "deleteBooking",
+    value: function () {
+      var _deleteBooking = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee3(req, res) {
+        var bookingId, rows;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                bookingId = req.params.bookingId;
+                _context3.next = 4;
+                return Book.model()["delete"]('booking_id=$1', [bookingId]);
+
+              case 4:
+                rows = _context3.sent;
+
+                if (!(rows.user_id !== req.user.userId)) {
+                  _context3.next = 7;
+                  break;
+                }
+
+                return _context3.abrupt("return", res.status(409).json({
+                  status: 'error',
+                  message: 'you can only delete your own booking'
+                }));
+
+              case 7:
+                if (!(rows.user_id === req.user.userId)) {
+                  _context3.next = 9;
+                  break;
+                }
+
+                return _context3.abrupt("return", res.status(200).json({
+                  status: 'success',
+                  data: {
+                    message: 'Booking deleted successfully',
+                    booking_id: rows.booking_id,
+                    trip_id: rows.trip_id,
+                    bus_id: rows.bus_id,
+                    trip_date: rows.trip_date,
+                    seat_number: rows.seat_number
+                  }
+                }));
+
+              case 9:
+                return _context3.abrupt("return", res.status(404).json({
+                  status: 'error',
+                  message: 'booking not found'
+                }));
+
+              case 12:
+                _context3.prev = 12;
+                _context3.t0 = _context3["catch"](0);
+                return _context3.abrupt("return", res.status(500).json({
+                  error: 'server error'
+                }));
+
+              case 15:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, null, [[0, 12]]);
+      }));
+
+      function deleteBooking(_x5, _x6) {
+        return _deleteBooking.apply(this, arguments);
+      }
+
+      return deleteBooking;
+    }()
   }]);
 
   return Book;
