@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var booking = [{
-  trip_id: 3
+  trip_id: 1
 }, {
   trip_id: ''
 }];

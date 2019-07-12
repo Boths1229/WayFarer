@@ -20,7 +20,7 @@ var createToken = function createToken(data) {
 exports.createToken = createToken;
 
 var verifyToken = function verifyToken(req, res, next) {
-  var token = req.headers.authorization || req.params.token || req.headers['x-access-token'] || req.body.token;
+  var token = req.headers.authorization || req.params.token || req.headers['x-access-token'] || req.body.token; // console.log('header ', req.headers.authorization)
 
   if (!token) {
     return res.status(403).json({
@@ -36,6 +36,8 @@ var verifyToken = function verifyToken(req, res, next) {
         message: 'token is invalid'
       });
     }
+
+    console.log('this is the body ', user.password); // console.log('user ', user)
 
     req.user = user;
     next();

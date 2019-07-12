@@ -189,7 +189,8 @@ function () {
                 _context3.prev = 10;
                 _context3.t0 = _context3["catch"](0);
                 return _context3.abrupt("return", res.status(500).json({
-                  error: 'server error'
+                  error: 'server error',
+                  e: _context3.t0
                 }));
 
               case 13:

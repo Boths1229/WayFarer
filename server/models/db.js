@@ -4,19 +4,19 @@ import debug from 'debug';
 import config from '../config/config';
 
 dotenv.config();
+const env = process.env.NODE_ENV;
 class Model {
   constructor(table) {
     this.table = table;
 
     this.pool = new Pool({
-      connectionString: process.env.DB_URL
+      connectionString: config.databaseUrl[env]
     });
 
     this.pool.on('error', (err, client) => {
       console.log('error');
     });
   }
-
   async select(columns, clause, values) {
     try {
       let query;

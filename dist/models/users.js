@@ -11,14 +11,15 @@ var users = [{
   first_name: 'amaka',
   last_name: 'chuks',
   password: 'amaka000',
-  is_admin: false
+  is_admin: true
 }, {
-  id: 4,
+  id: 2,
+  user_id: 2,
   email: 'boths@yahoo.com',
   first_name: 'chuks',
   last_name: 'emma',
   password: 'developer',
-  is_admin: false
+  is_admin: true
 }, {
   id: 5,
   email: '',
@@ -44,7 +45,8 @@ var users = [{
   first_name: 'amaka',
   last_name: 'chuks',
   email: 'boths1229@yahoo.com',
-  password: 'amaka000'
+  password: 'amaka000',
+  is_admin: true
 }, {
   email: 'both100@example.com',
   password: 'develops'

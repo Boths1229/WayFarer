@@ -1,11 +1,9 @@
 const booking = [
     {
-      trip_id: 3,
+      trip_id: 1,
     },
     {
-    
        trip_id: '',
-    
      },
   ];
   
