@@ -3,7 +3,8 @@ import { Pool } from 'pg';
 import config from '../config/config';
 
 dotenv.config();
-const pool = new Pool({ connectionString:process.env.DB_URL });
+const env = process.env.NODE_ENV;
+const pool = new Pool({ connectionString: config.databaseUrl[env] });
 
 pool.on('error', (err) => {
   console.log(err);
@@ -27,7 +28,7 @@ INSERT INTO users (
         'boths@yahoo.com',
         'chuks',
         'emma',
-        '$2b$10$Nb05xLfWP5a08cN959MIzumezo8CT14G6q8a1UPDviUD2VvgkOo96',
+        'developer',
         true
 );
 DROP TABLE IF EXISTS Bus CASCADE;
@@ -51,7 +52,6 @@ INSERT INTO Bus (
 );
 DROP TABLE IF EXISTS Trip CASCADE;
 CREATE TABLE Trip(
-    id SERIAL NOT NULL PRIMARY KEY,
     trip_id SERIAL,
     bus_id SERIAL,
 	origin VARCHAR NOT NULL,
@@ -61,9 +61,8 @@ CREATE TABLE Trip(
 	status VARCHAR DEFAULT 'active'
 ); 
 INSERT INTO Trip (
-  id, trip_id, bus_id, origin, destination, fare, status )
+   trip_id, bus_id, origin, destination, fare, status )
    VALUES (
-       1,
        1,
        1,
        'yaba',
@@ -73,7 +72,6 @@ INSERT INTO Trip (
 );
 DROP TABLE IF EXISTS Booking CASCADE;
 CREATE TABLE Booking(
-    id SERIAL NOT NULL PRIMARY KEY,
     booking_id SERIAL,
 	trip_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
@@ -85,10 +83,9 @@ CREATE TABLE Booking(
     email VARCHAR NOT NULL
 ); 
 INSERT INTO Booking (
-  id, booking_id, trip_id, user_id, bus_id, seat_number, first_name, last_name, email )
+   booking_id, trip_id, user_id, bus_id, seat_number, first_name, last_name, email )
    VALUES (
-       1,
-       1,
+       2,
        1,
        1,
        1,

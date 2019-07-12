@@ -27,6 +27,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 _dotenv["default"].config();
 
+var env = process.env.NODE_ENV;
+
 var Model =
 /*#__PURE__*/
 function () {
@@ -35,7 +37,7 @@ function () {
 
     this.table = table;
     this.pool = new _pg.Pool({
-      connectionString: process.env.DB_URL
+      connectionString: _config["default"].databaseUrl[env]
     });
     this.pool.on('error', function (err, client) {
       console.log('error');

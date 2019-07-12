@@ -1,21 +1,48 @@
 language: node_js
 node_js:
-    - "stable"
-script:
-    - npm run int:test
-cache: 
+  - "stable"
+cache:
   directories:
     - "node_modules"
-addons:
-  apt:
-    update: true    
-after_success:
-    - npm run coveralls
+install:
+  - npm install
 services:
-    - postgresql
-before_script:
-    - psql -c 'create database wayfarer_test;' -U postgres
-    - psql -c 'create USER chuksEmma WITH PASSWORD null;' -U postgres
+  - postgresql
+
 env:
   global:
   - NODE_ENV=test
+
+before_script:
+  - psql -c 'create database wayfarer_test;' -U postgres
+  - psql -c "CREATE USER chuksEmma WITH PASSWORD null;" -U postgres
+  - npm run build
+script:
+  - npm run int:test
+after_success:
+  - npm run coveralls
+
+
+
+# language: node_js
+# node_js:
+#     - "stable"
+# script:
+#     - npm run int:test
+# cache: 
+#   directories:
+#     - "node_modules"
+# addons:
+#   apt:
+#     update: true    
+# services:
+#     - postgresql
+# before_script:
+#     - psql -c 'create database wayfarer_test;' -U postgres
+#     - psql -c 'create USER chuksEmma WITH PASSWORD null;' -U postgres
+#     - npm run build
+# after_success:
+#     - npm run coveralls    
+# env:
+#   global:
+#   - NODE_ENV=test

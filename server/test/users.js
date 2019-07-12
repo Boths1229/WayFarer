@@ -4,7 +4,6 @@ import { exec } from 'child_process';
 import server from '../server';
 import users from '../models/users';
 
-
 chai.use(chaiHttp);
 
 const { expect } = chai;
