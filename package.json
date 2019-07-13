@@ -11,7 +11,7 @@
     "migration": "npm run build && node ./dist/models/migration",
     "build": "babel ./server --out-dir ./dist --copy-files --ignore ./node_modules,./coverage,./.babelrc,.nyc_output,./package.json,./npm-debug.log,./.travis.yml,./.eslintrc,./UI,./README.md",
     "test": "SET NODE_ENV=test && npm run migration && nyc mocha server/test/**/*.js --require @babel/register --reporter spec --timeout 25000",
-    "start": "SET NODE_ENV=production && node -r @babel/register ./server/server.js",
+    "start": "node -r @babel/register ./server/server.js",
     "start:dev": "SET NODE_ENV=development && npm run migration && set DEBUG=http && nodemon --exec babel-node -- ./server/server.js",
     "int:test": "npm run migration && nyc mocha server/test/*.js --require @babel/register --reporter spec --timeout 25000",
     "coveralls": "npm run int:test&& nyc report --reporter=text-lcov | coveralls"
