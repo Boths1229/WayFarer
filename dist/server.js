@@ -17,9 +17,13 @@ var _debug = _interopRequireDefault(require("debug"));
 
 var _cors = _interopRequireDefault(require("cors"));
 
+var _swaggerUiExpress = _interopRequireDefault(require("swagger-ui-express"));
+
 var _config = _interopRequireDefault(require("./config/config"));
 
 var _routes = _interopRequireDefault(require("./routes/routes"));
+
+var _swagger = _interopRequireDefault(require("../swagger"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -30,7 +34,9 @@ server.use((0, _morgan["default"])('dev'));
 server.use(_bodyParser["default"].json());
 server.use(_bodyParser["default"].urlencoded({
   extended: false
-}));
+})); // use swagger-Ui-express for your app documentation endpoint
+
+server.use('/docs', _swaggerUiExpress["default"].serve, _swaggerUiExpress["default"].setup(_swagger["default"]));
 server.use((0, _cors["default"])());
 var Debug = (0, _debug["default"])('http'); // Routes(server);
 

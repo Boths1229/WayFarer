@@ -37,16 +37,16 @@ function () {
       var _createTrip = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee(req, res) {
-        var _req$body, origin, destination, fare, trip;
+        var _req$body, origin, destination, fare, bus_id, trip_date, trip;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.prev = 0;
-                _req$body = req.body, origin = _req$body.origin, destination = _req$body.destination, fare = _req$body.fare;
+                _req$body = req.body, origin = _req$body.origin, destination = _req$body.destination, fare = _req$body.fare, bus_id = _req$body.bus_id, trip_date = _req$body.trip_date;
                 _context.next = 4;
-                return Trip.model().insert('origin, destination, fare', '$1, $2, $3', [origin, destination, fare]);
+                return Trip.model().insert('origin, destination, fare, bus_id, trip_date', '$1, $2, $3, $4, $5', [origin, destination, fare, bus_id, trip_date]);
 
               case 4:
                 trip = _context.sent;

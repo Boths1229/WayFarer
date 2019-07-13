@@ -2,13 +2,16 @@
   "name": "wayfarer",
   "version": "1.0.0",
   "description": "Andela Developer Challenge",
-  "main": "index.js",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs"
+  },
   "scripts": {
     "lint": "./node_modules/.bin/eslint ./ --fix",
     "migration": "npm run build && node ./dist/models/migration",
     "build": "babel ./server --out-dir ./dist --copy-files --ignore ./node_modules,./coverage,./.babelrc,.nyc_output,./package.json,./npm-debug.log,./.travis.yml,./.eslintrc,./UI,./README.md",
     "test": "SET NODE_ENV=test && npm run migration && nyc mocha server/test/**/*.js --require @babel/register --reporter spec --timeout 25000",
-    "start": "SET NODE_ENV=production && node -r @babel/register ./server/server.js",
+    "start": "node -r @babel/register ./server/server.js",
     "start:dev": "SET NODE_ENV=development && npm run migration && set DEBUG=http && nodemon --exec babel-node -- ./server/server.js",
     "int:test": "npm run migration && nyc mocha server/test/*.js --require @babel/register --reporter spec --timeout 25000",
     "coveralls": "npm run int:test&& nyc report --reporter=text-lcov | coveralls"
@@ -39,6 +42,7 @@
     "express": "^4.17.1",
     "idempotent-babel-polyfill": "^7.4.4",
     "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.14",
     "morgan": "^1.9.1",
     "pg": "^7.11.0",
     "swagger-jsdoc": "^3.3.0",
