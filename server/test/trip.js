@@ -33,7 +33,6 @@ describe('Trip test', () => {
         .set("Authorization", token)
         .send(trip[0])
         .end((err, res) => {
-          console.log('this is the body ', res.body);
           expect(res.body).to.be.an('object');
           expect(res.body.status).to.equal('success');
           expect(res.body.data.trip_id).to.equal(1);
@@ -91,16 +90,8 @@ describe('Trip test', () => {
         .set('Accept', 'application/json')
         .set("Authorization", token)
         .end((err, res) => {
-          console.log('this is the body ', res.body);
           expect(res.body).to.be.an('object');
           expect(res.status).to.equal(200);
-          // expect(res.body.data.trip_id).to.equal(1);
-          // expect(res.body.data.bus_id).to.equal(1);
-          // expect(res.body.data.origin).to.equal('yaba');
-          // expect(res.body.data.destination).to.equal('ikeja');
-          // expect(res.body.data.trip_date).to.be.a('string');
-          // expect(res.body.data.fare).to.equal(100);
-          // expect(res.body.data.status).to.equal('active');
           done();
         });
     });
@@ -116,7 +107,6 @@ describe('Trip test', () => {
           status: 'cancelled',
         })
         .end((err, res) => {
-          console.log('this is the body ', res.body);
           expect(res.body).to.be.an('object');
           expect(res.status).to.equal(200);
           expect(res.body.data.message).to.equal('Trip Cancelled Successfully');

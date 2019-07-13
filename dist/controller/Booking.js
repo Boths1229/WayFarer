@@ -67,7 +67,7 @@ function () {
 
               case 7:
                 _context.next = 9;
-                return Book.model().insert('trip_id, user_id, bus_id, trip_date, first_name, last_name, email', '$1, $2, $3, $4, $5, $6', [check[0].trip_id, req.user.userId, check[0].bus_id, check[0].trip_date, req.user.firstName, req.user.lastName, req.user.email]);
+                return Book.model().insert('trip_id, user_id, bus_id, trip_date, first_name, last_name, email', '$1, $2, $3, $4, $5, $6, $7', [check[0].trip_id, req.user.userId, check[0].bus_id, check[0].trip_date, req.user.firstName, req.user.lastName, req.user.email]);
 
               case 9:
                 book = _context.sent;
