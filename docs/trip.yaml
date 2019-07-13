@@ -1,0 +1,111 @@
+paths:
+  /trips/:                # path of the user from your endpoint
+    post:                 # endpoint request type (post request)
+      tags:               # Tag property
+        - Trip            # Value of the tag
+      summary: creates a new trip
+      produces:
+      - application/json
+      parameters:         # request parameters
+      - in: body          # request body
+        name: trips     # name of request, can be any name
+        description: It enables admin create a trip
+        required: false   # can also be true depending on user preference
+        schema:           # Schema definition
+          $ref: '#/definitions/createTrips' 
+      responses:          # server responses
+        201:
+          description: An object with trip details
+definitions:        # Schema defination for request body
+  trips:
+    type: object
+    properties:
+      trips:
+        type: object
+        properties:
+          trip_id:
+            type: number
+          bus_id:
+            type: number
+          trip_date:
+            type: string
+paths:
+  /trips/:         # path of the user from your endpoint
+    get:              # endpoint request type (put request)
+      tags:
+        - Trip
+      summary: It shows all ongoing trips
+      produces:
+      - application/json
+      parameters:     # request parameters
+      - name: trips      # name of parameter passed
+        in: path      # parameters in the path
+        description: path parameter takes the trips
+        required: true
+        type: string
+      - in: body
+        name: shows available trips
+        description: It enables a user view all trips
+        required: false
+        schema:
+          $ref: '#/definitions/viewTrips'
+      responses:
+        200:
+          description: An object with all trips
+        401:
+          description: Unauthorized users
+definitions:        # Schema definition for the request body
+  viewTrips:
+    type: object
+    properties:
+      trips:
+        type: object
+        properties:
+          trip_id:
+            type: number
+          bus_id:
+            type: number
+          trip_date:
+            type: string
+          status:
+            type: string
+paths:
+  /trips/{tripId}:         # path of the user from your endpoint
+    patch:              # endpoint request type (put request)
+      tags:
+        - Trip
+      summary: It cancels a trip
+      produces:
+      - application/json
+      parameters:     # request parameters
+      - name: tripId      # name of parameter passed
+        in: path      # parameters in the path
+        description: path parameter takes the trip id
+        required: true
+        type: string
+      - in: body
+        name: update trip status
+        description: It enables admin cancel a trip
+        required: false
+        schema:
+          $ref: '#/definitions/tripId'
+      responses:
+        200:
+          description: An object with a trip details
+        401:
+          description: Unauthorized users
+definitions:        # Schema definition for the request body
+  cancelsTrip:
+    type: object
+    properties:
+      trips:
+        type: object
+        properties:
+          message:
+            type: string
+          trip_id:
+            type: number
+          bus_id:
+            type: number
+          status:
+            type: string                        

@@ -1,0 +1,62 @@
+paths:
+  /auth/signup/:                # path of the user from your endpoint
+    post:                 # endpoint request type (post request)
+      tags:               # Tag property
+        - User            # Value of the tag
+      summary: creates a new user
+      produces:
+      - application/json
+      parameters:         # request parameters
+      - in: body          # request body
+        name: sign up     # name of request, can be any name
+        description: It enables a user to create an account
+        required: false   # can also be true depending on user preference
+        schema:           # Schema definition
+          $ref: '#/definitions/signUp' 
+      responses:          # server responses
+        201:
+          description: An object with user details
+definitions:        # Schema defination for request body
+  signUp:
+    type: object
+    properties:
+      user:
+        type: object
+        properties:
+          first_name:
+            type: string
+          last_name:
+            type: string  
+          email:
+            type: string
+          password:
+            type: string
+paths:
+  /auth/singin/:                # path of the user from your endpoint
+    post:                 # endpoint request type (post request)
+      tags:               # Tag property
+        - User            # Value of the tag
+      summary: logs in a registered user
+      produces:
+      - application/json
+      parameters:         # request parameters
+      - in: body          # request body
+        name: sign in     # name of request, can be any name
+        description: It enables a user to log into his/her account
+        required: false   # can also be true depending on user preference
+        schema:           # Schema definition
+          $ref: '#/definitions/signIn' 
+      responses:          # server responses
+        200:
+          description: An object with user details
+definitions:        # Schema defination for request body
+  signIn:
+    type: object
+    properties:
+      user:
+        type: object
+        properties:
+          email:
+            type: string
+          password:
+            type: string            

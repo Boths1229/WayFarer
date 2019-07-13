@@ -7,11 +7,11 @@ class Trip {
     static async createTrip(req, res) {
         try {
           const {
-          origin, destination, fare
+          origin, destination, fare, bus_id, trip_date
           } = req.body; 
           const trip = await Trip.model().insert(
-            'origin, destination, fare', '$1, $2, $3',
-            [origin, destination, fare]
+            'origin, destination, fare, bus_id, trip_date', '$1, $2, $3, $4, $5',
+            [origin, destination, fare, bus_id, trip_date]
           );
     
           return res.status(201).json({

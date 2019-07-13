@@ -40,7 +40,9 @@ export const validateTripCredentials = (req, res, next) => {
   const rules = {
     origin: 'required',
     destination: 'required',
-    fare: 'required'
+    fare: 'required',
+    bus_id: 'required',
+    trip_date: 'required'
   };
   return validateCredentials(req, res, next, rules);
 };

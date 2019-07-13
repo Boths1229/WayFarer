@@ -56,17 +56,18 @@ CREATE TABLE Trip(
     bus_id SERIAL,
 	origin VARCHAR NOT NULL,
 	destination VARCHAR NOT NULL,
-	trip_date TIMESTAMP DEFAULT NOW(),
+	trip_date TIMESTAMP,
 	fare FLOAT(2) NOT NULL,
 	status VARCHAR DEFAULT 'active'
 ); 
 INSERT INTO Trip (
-   trip_id, bus_id, origin, destination, fare, status )
+   trip_id, bus_id, origin, destination, trip_date, fare, status )
    VALUES (
        1,
        1,
        'yaba',
        'ikeja',
+       '2019-07-12 08:39:35 +0000',
        100,
        'active'
 );
@@ -76,19 +77,20 @@ CREATE TABLE Booking(
 	trip_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
     bus_id INTEGER NOT NULL,
-    trip_date TIMESTAMP DEFAULT NOW(),
+    trip_date TIMESTAMP,
     seat_number SERIAL,
     first_name VARCHAR NOT NULL,
     last_name VARCHAR NOT NULL,
     email VARCHAR NOT NULL
 ); 
 INSERT INTO Booking (
-   booking_id, trip_id, user_id, bus_id, seat_number, first_name, last_name, email )
+   booking_id, trip_id, user_id, bus_id, trip_date, seat_number, first_name, last_name, email )
    VALUES (
        2,
        1,
        1,
        1,
+       '2019-07-12 08:39:35 +0000',
        1,
        'chuks',
        'emma',

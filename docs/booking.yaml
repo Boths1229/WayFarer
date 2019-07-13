@@ -1,0 +1,111 @@
+paths:
+  /bookings/:                # path of the user from your endpoint
+    post:                 # endpoint request type (post request)
+      tags:               # Tag property
+        - Booking            # Value of the tag
+      summary: creates a new booking
+      produces:
+      - application/json
+      parameters:         # request parameters
+      - in: body          # request body
+        name: seat booking     # name of request, can be any name
+        description: It enables a user to book a seat
+        required: false   # can also be true depending on user preference
+        schema:           # Schema definition
+          $ref: '#/definitions/signUp' 
+      responses:          # server responses
+        201:
+          description: An object with booking details
+definitions:        # Schema defination for request body
+  bookings:
+    type: object
+    properties:
+      user:
+        type: object
+        properties:
+          booking_id:
+            type: number
+          user_id:
+            type: number
+          bus_id:
+            type: number
+paths:
+  /bookings/:         # path of the user from your endpoint
+    get:              # endpoint request type (put request)
+      tags:
+        - Booking
+      summary: It gets all the users bookings
+      produces:
+      - application/json
+      parameters:     # request parameters
+      - name: bookings      # name of parameter passed
+        in: path      # parameters in the path
+        description: path parameter takes the bookings
+        required: true
+        type: string
+      - in: body
+        name: gets all bookings
+        description: It enables a user to view all his/her bookings
+        required: false
+        schema:
+          $ref: '#/definitions/bookings'
+      responses:
+        200:
+          description: An object with a user booking details
+        401:
+          description: Unauthorized users
+definitions:        # Schema definition for the request body
+  getBookings:
+    type: object
+    properties:
+      bookings:
+        type: object
+        properties:
+          booking_id:
+            type: number
+          user_id:
+            type: number
+          trip_id:
+            type: number
+          bus_id:
+            type: number
+paths:
+  /bookings/{bookingId}:         # path of the user from your endpoint
+    delete:              # endpoint request type (put request)
+      tags:
+        - Booking
+      summary: It deletes a users booking
+      produces:
+      - application/json
+      parameters:     # request parameters
+      - name: bookingId      # name of parameter passed
+        in: path      # parameters in the path
+        description: path parameter takes the booking id
+        required: true
+        type: string
+      - in: body
+        name: deletes a booking
+        description: It enables a user to delete his/her booking
+        required: false
+        schema:
+          $ref: '#/definitions/deleteBooking'
+      responses:
+        200:
+          description: An object with a user updated user profile detail
+        401:
+          description: Unauthorized users
+definitions:        # Schema definition for the request body
+  deleteBooking:
+    type: object
+    properties:
+      bookings:
+        type: object
+        properties:
+          message:
+            type: string
+          booking_id:
+            type: number
+          user_id:
+            type: number
+          trip_id:
+            type: number                        
