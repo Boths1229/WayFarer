@@ -13,7 +13,7 @@ class Model {
       connectionString: config.databaseUrl[env]
     });
 
-    this.pool.on('error', (err, client) => {
+     this.pool.on('error', (err, client) => {
       console.log('error');
     });
   }

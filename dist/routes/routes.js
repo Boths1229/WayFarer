@@ -11,6 +11,8 @@ var _User = _interopRequireDefault(require("../controller/User"));
 
 var _Trip = _interopRequireDefault(require("../controller/Trip"));
 
+var _Bus = _interopRequireDefault(require("../controller/Bus"));
+
 var _Booking = _interopRequireDefault(require("../controller/Booking"));
 
 var _validateCredentials = require("../middlewares/validateCredentials");
@@ -32,6 +34,8 @@ var createTrip = _Trip["default"].createTrip,
 var seatBooking = _Booking["default"].seatBooking,
     getAllBookings = _Booking["default"].getAllBookings,
     deleteBooking = _Booking["default"].deleteBooking;
+var createBus = _Bus["default"].createBus,
+    getAllBus = _Bus["default"].getAllBus;
 
 var router = _express["default"].Router(); // User
 
@@ -46,6 +50,9 @@ router.patch('/trips/:tripId', _isAdmin.isAdmin, cancelTrip); // Booking
 
 router.post('/bookings', _validateCredentials.validateBookingCredentials, _token.verifyToken, seatBooking);
 router.get('/bookings', _token.verifyToken, getAllBookings);
-router["delete"]('/bookings/:bookingId', _token.verifyToken, deleteBooking);
+router["delete"]('/bookings/:bookingId', _token.verifyToken, deleteBooking); //Bus
+
+router.post('/bus', _validateCredentials.validateBusCredentials, _isAdmin.isAdmin, createBus);
+router.get('/bus', _isAdmin.isAdmin, getAllBus);
 var _default = router;
 exports["default"] = _default;

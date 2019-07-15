@@ -33,15 +33,15 @@ INSERT INTO users (
 );
 DROP TABLE IF EXISTS Bus CASCADE;
 CREATE TABLE Bus(
-    id SERIAL NOT NULL PRIMARY KEY,
+    bus_id SERIAL,
 	number_plate VARCHAR NOT NULL,
 	manufacturer VARCHAR NOT NULL,
 	model VARCHAR NOT NULL,
-	year VARCHAR NOT NULL,
+    year VARCHAR NOT NULL,
 	capacity INTEGER NOT NULL
 );
 INSERT INTO Bus (
-  id, number_plate, manufacturer, model, year, capacity )
+  bus_id, number_plate, manufacturer, model, year, capacity )
    VALUES (
        5,
       'AGL 519 FE',
@@ -57,11 +57,14 @@ CREATE TABLE Trip(
 	origin VARCHAR NOT NULL,
 	destination VARCHAR NOT NULL,
 	trip_date TIMESTAMP,
-	fare FLOAT(2) NOT NULL,
+    fare FLOAT(2) NOT NULL,
+    number_plate VARCHAR NOT NULL,
+    capacity INTEGER NOT NULL,
+    model VARCHAR NOT NULL,
 	status VARCHAR DEFAULT 'active'
 ); 
 INSERT INTO Trip (
-   trip_id, bus_id, origin, destination, trip_date, fare, status )
+   trip_id, bus_id, origin, destination, trip_date, fare, number_plate, capacity, model, status )
    VALUES (
        1,
        1,
@@ -69,22 +72,27 @@ INSERT INTO Trip (
        'ikeja',
        '2019-07-12 08:39:35 +0000',
        100,
+       'AGL 519 FE',
+       36,
+       'corolla',
        'active'
 );
 DROP TABLE IF EXISTS Booking CASCADE;
 CREATE TABLE Booking(
-    booking_id SERIAL,
+    booking_id SERIAL NOT NULL,
 	trip_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
     bus_id INTEGER NOT NULL,
     trip_date TIMESTAMP,
-    seat_number SERIAL,
+    seat_number INTEGER,
+    number_plate VARCHAR NOT NULL,
+    model VARCHAR NOT NULL,
     first_name VARCHAR NOT NULL,
     last_name VARCHAR NOT NULL,
     email VARCHAR NOT NULL
 ); 
 INSERT INTO Booking (
-   booking_id, trip_id, user_id, bus_id, trip_date, seat_number, first_name, last_name, email )
+   booking_id, trip_id, user_id, bus_id, trip_date, seat_number, number_plate, model,first_name, last_name, email )
    VALUES (
        2,
        1,
@@ -92,6 +100,8 @@ INSERT INTO Booking (
        1,
        '2019-07-12 08:39:35 +0000',
        1,
+       'AGL 519 FE',
+       'corolla',
        'chuks',
        'emma',
        'boths'

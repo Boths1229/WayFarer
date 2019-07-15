@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.validateBookingCredentials = exports.validateTripCredentials = exports.validateSigninCredentials = exports.validateRegisterationCredentials = void 0;
+exports.validateBusCredentials = exports.validateBookingCredentials = exports.validateTripCredentials = exports.validateSigninCredentials = exports.validateRegisterationCredentials = void 0;
 
 var _validatorjs = _interopRequireDefault(require("validatorjs"));
 
@@ -72,3 +72,16 @@ var validateBookingCredentials = function validateBookingCredentials(req, res, n
 };
 
 exports.validateBookingCredentials = validateBookingCredentials;
+
+var validateBusCredentials = function validateBusCredentials(req, res, next) {
+  var rules = {
+    number_plate: 'required',
+    manufacturer: 'required',
+    model: 'required',
+    year: 'required',
+    capacity: 'required'
+  };
+  return validateCredentials(req, res, next, rules);
+};
+
+exports.validateBusCredentials = validateBusCredentials;

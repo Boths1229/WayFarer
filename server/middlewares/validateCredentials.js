@@ -53,3 +53,14 @@ export const validateBookingCredentials = (req, res, next) => {
   };
   return validateCredentials(req, res, next, rules);
 };
+
+export const validateBusCredentials = (req, res, next) => {
+  const rules = {
+    number_plate: 'required',
+    manufacturer: 'required',
+    model: 'required',
+    year: 'required',
+    capacity: 'required'
+  };
+  return validateCredentials(req, res, next, rules);
+};
