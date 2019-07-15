@@ -51,7 +51,7 @@ function () {
                 _context.prev = 0;
                 _req$body = req.body, origin = _req$body.origin, destination = _req$body.destination, fare = _req$body.fare, bus_id = _req$body.bus_id, trip_date = _req$body.trip_date;
                 _context.next = 4;
-                return Book.bus().select('*', 'bus_id=$1', [bus_id]);
+                return Trip.bus().select('*', 'bus_id=$1', [bus_id]);
 
               case 4:
                 check = _context.sent;
@@ -123,7 +123,7 @@ function () {
               case 0:
                 _context2.prev = 0;
                 _context2.next = 3;
-                return Trip.model().select('trip_id, bus_id, origin, destination, trip_date, fare, status');
+                return Trip.model().select('trip_id, bus_id, origin, destination, trip_date, number_plate, model, capacity, fare, status');
 
               case 3:
                 rows = _context2.sent;

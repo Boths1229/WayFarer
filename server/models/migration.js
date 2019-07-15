@@ -92,7 +92,7 @@ CREATE TABLE Booking(
     email VARCHAR NOT NULL
 ); 
 INSERT INTO Booking (
-   booking_id, trip_id, user_id, bus_id, trip_date, seat_number, number_plate, model,first_name, last_name, email )
+   booking_id, trip_id, user_id, bus_id, trip_date, seat_number, number_plate, model, first_name, last_name, email )
    VALUES (
        2,
        1,

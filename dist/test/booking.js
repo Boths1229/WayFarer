@@ -14,11 +14,14 @@ var _token = require("../helper/token");
 
 var _users = _interopRequireDefault(require("../models/users"));
 
+var _bus = _interopRequireDefault(require("../models/bus"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 _chai["default"].use(_chaiHttp["default"]);
 
 var expect = _chai["default"].expect;
+var busCapacity = _bus["default"][0].capacity;
 var isAdmin = _users["default"][1].is_admin;
 var firstName = _users["default"][1].first_name;
 var lastName = _users["default"][1].last_name;
@@ -43,13 +46,16 @@ describe('Booking test', function () {
   describe('POST seat booking successful api/v1/bookings', function () {
     it('should return booking successful', function (done) {
       _chai["default"].request(_server["default"]).post('/api/v1/bookings').set('Accept', 'application/json').set("Authorization", token).send(_booking["default"][0]).end(function (err, res) {
+        console.log('this is the body ', res.body);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.equal('success');
         expect(res.body.data.booking_id).to.equal(1);
         expect(res.body.data.user_id).to.equal(2);
         expect(res.body.data.trip_id).to.equal(1);
-        expect(res.body.data.bus_id).to.equal(1);
-        expect(res.body.data.seat_number).to.equal(1);
+        expect(res.body.data.bus_id).to.equal(5);
+        expect(res.body.data.seat_number).to.equal(0);
+        expect(res.body.data.number_plate).to.equal('AGL 519 FE');
+        expect(res.body.data.model).to.equal('corolla');
         expect(res.body.data.first_name).to.equal('chuks');
         expect(res.body.data.last_name).to.equal('emma');
         expect(res.body.data.email).to.equal('boths@yahoo.com');
@@ -80,14 +86,15 @@ describe('Booking test', function () {
   describe('DELETE a booking /api/v1/bookings/:bookingId', function () {
     it('should return booking deleted', function (done) {
       _chai["default"].request(_server["default"])["delete"]('/api/v1/bookings/1').set('Accept', 'application/json').set("Authorization", token).end(function (err, res) {
+        console.log('this is the body ', res.body);
         expect(res.body).to.be.an('object');
         expect(res.status).to.equal(200);
         expect(res.body.data.message).to.equal('Booking deleted successfully');
         expect(res.body.data.booking_id).to.equal(1);
         expect(res.body.data.trip_id).to.equal(1);
-        expect(res.body.data.bus_id).to.equal(1);
+        expect(res.body.data.bus_id).to.equal(5);
         expect(res.body.data.trip_date).to.be.a('string');
-        expect(res.body.data.seat_number).to.equal(1);
+        expect(res.body.data.seat_number).to.equal(0);
         done();
       });
     });

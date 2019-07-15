@@ -47,7 +47,7 @@ function () {
       var _seatBooking = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee(req, res) {
-        var trip_id, check, busId, seatCheck, book;
+        var trip_id, check, busId, seatCheck, busCapacity, bookingId, seatsBooked, book;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -77,9 +77,15 @@ function () {
 
               case 10:
                 seatCheck = _context.sent;
+                busCapacity = seatCheck[0].capacity;
+                _context.next = 14;
+                return Book.model().select('*', "trip_id=".concat(check[0].trip_id));
 
-                if (!(seatCheck.seat_number > seatCheck.capacity)) {
-                  _context.next = 13;
+              case 14:
+                bookingId = _context.sent;
+
+                if (!(bookingId.length > busCapacity)) {
+                  _context.next = 17;
                   break;
                 }
 
@@ -88,11 +94,12 @@ function () {
                   message: 'No more seat available in this bus'
                 }));
 
-              case 13:
-                _context.next = 15;
-                return Book.model().insert('trip_id, user_id, bus_id, trip_date, seat_number, first_name, last_name, email', '$1, $2, $3, $4, $5, $6, $7, $8', [check[0].trip_id, req.user.userId, check[0].bus_id, check[0].trip_date, seatCheck[0].seat_number, req.user.firstName, req.user.lastName, req.user.email]);
+              case 17:
+                seatsBooked = bookingId.length;
+                _context.next = 20;
+                return Book.model().insert('trip_id, user_id, bus_id, trip_date, seat_number, number_plate, model, first_name, last_name, email', '$1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11', [check[0].trip_id, req.user.userId, check[0].bus_id, check[0].trip_date, seatsBooked, seatCheck[0].number_plate, seatCheck[0].model, req.user.firstName, req.user.lastName, req.user.email]);
 
-              case 15:
+              case 20:
                 book = _context.sent;
                 return _context.abrupt("return", res.status(201).json({
                   status: 'success',
@@ -102,27 +109,29 @@ function () {
                     trip_id: check[0].trip_id,
                     bus_id: check[0].bus_id,
                     trip_date: check[0].trip_date,
-                    seat_number: seatCheck[0].seat_number,
+                    seat_number: seatsBooked,
+                    number_plate: seatCheck[0].number_plate,
+                    model: seatCheck[0].model,
                     first_name: book[0].first_name,
                     last_name: book[0].last_name,
                     email: book[0].email
                   }
                 }));
 
-              case 19:
-                _context.prev = 19;
+              case 24:
+                _context.prev = 24;
                 _context.t0 = _context["catch"](0);
                 return _context.abrupt("return", res.status(500).json({
                   error: _context.t0.message,
                   e: _context.t0
                 }));
 
-              case 22:
+              case 27:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 19]]);
+        }, _callee, null, [[0, 24]]);
       }));
 
       function seatBooking(_x, _x2) {
@@ -151,7 +160,7 @@ function () {
                 }
 
                 _context2.next = 4;
-                return Book.model().select('booking_id, user_id, trip_id, bus_id, trip_date, seat_number, first_name, last_name, email', "user_id=".concat(req.user.userId));
+                return Book.model().select('booking_id, user_id, trip_id, bus_id, trip_date, seat_number, number_plate, model, first_name, last_name, email', "user_id=".concat(req.user.userId));
 
               case 4:
                 rows = _context2.sent;
@@ -179,7 +188,7 @@ function () {
                 }
 
                 _context2.next = 11;
-                return Book.model().select('booking_id, user_id, trip_id, bus_id, trip_date, seat_number, first_name, last_name, email');
+                return Book.model().select('booking_id, user_id, trip_id, bus_id, trip_date, seat_number, number_plate, model, first_name, last_name, email');
 
               case 11:
                 _rows = _context2.sent;

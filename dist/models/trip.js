@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var trip = [{
   trip_id: 1,
-  bus_id: 1,
+  bus_id: 5,
   origin: 'yaba',
   // starting location
   destination: 'ikeja',
