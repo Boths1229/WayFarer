@@ -1,7 +1,7 @@
 const trip = [
     {
       trip_id: 1,
-      bus_id: 1,
+      bus_id: 5,
       origin: 'yaba', // starting location
       destination: 'ikeja',
       trip_date: '2019-07-12 08:39:35 +0000',
