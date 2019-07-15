@@ -39,6 +39,8 @@ describe('Booking test', () => {
           expect(res.body.data.trip_id).to.equal(1);
           expect(res.body.data.bus_id).to.equal(1);
           expect(res.body.data.seat_number).to.equal(1);
+          expect(res.body.data.number_plate).to.equal('AGL 519 FE');
+          expect(res.body.data.model).to.equal('corolla');
           expect(res.body.data.first_name).to.equal('chuks');
           expect(res.body.data.last_name).to.equal('emma');
           expect(res.body.data.email).to.equal('boths@yahoo.com');

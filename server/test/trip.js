@@ -42,6 +42,9 @@ describe('Trip test', () => {
           expect(res.body.data.destination).to.equal('ikeja');
           expect(res.body.data.trip_date).to.be.a('string');
           expect(res.body.data.fare).to.equal(100);
+          expect(res.body.data.number_plate).to.equal('AGL 519 FE');
+          expect(res.body.data.model).to.equal('corolla');
+          expect(res.body.data.capacity).to.equal(36);
           expect(res.body.data.status).to.equal('active');
           done();
         });
