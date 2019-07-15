@@ -9,7 +9,7 @@ const config = {
   databaseUrl: {
     development: process.env.development_URL,
     test: process.env.test_URL,
-    production: process.env.production_URL
+    production: process.env.DB_URL
  }
 };
 

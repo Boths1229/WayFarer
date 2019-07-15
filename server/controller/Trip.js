@@ -4,14 +4,24 @@ class Trip {
     static model() {
       return new Model('Trip');
     }
+    static bus() {
+      return new Model('Bus');
+    }
     static async createTrip(req, res) {
         try {
           const {
           origin, destination, fare, bus_id, trip_date
           } = req.body; 
+          const check = await Trip.bus().select('*', 'bus_id=$1', [bus_id]);
+          if (!check[0]) {
+            return res.status(400).json({
+                status: 'error',
+                message: 'invalid bus id',
+            });
+          }
           const trip = await Trip.model().insert(
-            'origin, destination, fare, bus_id, trip_date', '$1, $2, $3, $4, $5',
-            [origin, destination, fare, bus_id, trip_date]
+            'origin, destination, fare, bus_id, trip_date, number_plate, model, capacity', '$1, $2, $3, $4, $5, $6, $7, $8',
+            [origin, destination, fare, bus_id, trip_date, check[0].number_plate, check[0].model, check[0].capacity]
           );
     
           return res.status(201).json({
@@ -23,6 +33,9 @@ class Trip {
               destination: trip[0].destination,
               trip_date: trip[0].trip_date,
               fare: trip[0].fare,
+              number_plate: check[0].number_plate,
+              model: check[0].model,
+              capacity: check[0].capacity,
               status: trip[0].status
             }
           });
@@ -36,7 +49,7 @@ class Trip {
 
       static async getAllTrips(req, res) {
         try {
-          const rows = await Trip.model().select('trip_id, bus_id, origin, destination, trip_date, fare, status');
+          const rows = await Trip.model().select('trip_id, bus_id, origin, destination, trip_date, number_plate, model, capacity, fare, status');
           if (rows.length === 0) {
             return res.status(400).json({
               status: 'error',  

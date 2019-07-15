@@ -1,9 +1,11 @@
 import express from 'express';
 import User from '../controller/User';
 import Trip from '../controller/Trip';
+import Bus from '../controller/Bus';
 import Booking from '../controller/Booking';
 import {
-  validateRegisterationCredentials, validateSigninCredentials, validateTripCredentials, validateBookingCredentials
+  validateRegisterationCredentials, validateSigninCredentials, validateTripCredentials, validateBookingCredentials, 
+  validateBusCredentials
 } from '../middlewares/validateCredentials';
 import validateEmailExistence from '../middlewares/validateEmailExistence';
 import { verifyToken } from '../helper/token';
@@ -17,6 +19,7 @@ const { createTrip, getAllTrips, cancelTrip
 } = Trip;
 const { seatBooking, getAllBookings, deleteBooking
 } = Booking;
+const { createBus, getAllBus } = Bus
 
 const router = express.Router();
 // User
@@ -33,5 +36,9 @@ router.patch('/trips/:tripId', isAdmin, cancelTrip);
 router.post('/bookings', validateBookingCredentials, verifyToken, seatBooking);
 router.get('/bookings', verifyToken, getAllBookings);
 router.delete('/bookings/:bookingId', verifyToken, deleteBooking);
+
+//Bus
+router.post('/bus', validateBusCredentials, isAdmin, createBus);
+router.get('/bus', isAdmin, getAllBus);
 
 export default router;

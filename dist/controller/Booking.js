@@ -37,12 +37,17 @@ function () {
       return new _db["default"]('Trip');
     }
   }, {
+    key: "seat",
+    value: function seat() {
+      return new _db["default"]('Bus');
+    }
+  }, {
     key: "seatBooking",
     value: function () {
       var _seatBooking = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee(req, res) {
-        var trip_id, check, book;
+        var trip_id, check, busId, seatCheck, book;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -66,10 +71,28 @@ function () {
                 }));
 
               case 7:
-                _context.next = 9;
-                return Book.model().insert('trip_id, user_id, bus_id, trip_date, first_name, last_name, email', '$1, $2, $3, $4, $5, $6', [check[0].trip_id, req.user.userId, check[0].bus_id, check[0].trip_date, req.user.firstName, req.user.lastName, req.user.email]);
+                busId = check[0].bus_id;
+                _context.next = 10;
+                return Book.seat().select('*', 'bus_id=$1', [busId]);
 
-              case 9:
+              case 10:
+                seatCheck = _context.sent;
+
+                if (!(seatCheck.seat_number > seatCheck.capacity)) {
+                  _context.next = 13;
+                  break;
+                }
+
+                return _context.abrupt("return", res.status(400).json({
+                  status: 'error',
+                  message: 'No more seat available in this bus'
+                }));
+
+              case 13:
+                _context.next = 15;
+                return Book.model().insert('trip_id, user_id, bus_id, trip_date, seat_number, first_name, last_name, email', '$1, $2, $3, $4, $5, $6, $7, $8', [check[0].trip_id, req.user.userId, check[0].bus_id, check[0].trip_date, seatCheck[0].seat_number, req.user.firstName, req.user.lastName, req.user.email]);
+
+              case 15:
                 book = _context.sent;
                 return _context.abrupt("return", res.status(201).json({
                   status: 'success',
@@ -79,27 +102,27 @@ function () {
                     trip_id: check[0].trip_id,
                     bus_id: check[0].bus_id,
                     trip_date: check[0].trip_date,
-                    seat_number: book[0].seat_number,
+                    seat_number: seatCheck[0].seat_number,
                     first_name: book[0].first_name,
                     last_name: book[0].last_name,
                     email: book[0].email
                   }
                 }));
 
-              case 13:
-                _context.prev = 13;
+              case 19:
+                _context.prev = 19;
                 _context.t0 = _context["catch"](0);
                 return _context.abrupt("return", res.status(500).json({
                   error: _context.t0.message,
                   e: _context.t0
                 }));
 
-              case 16:
+              case 22:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 13]]);
+        }, _callee, null, [[0, 19]]);
       }));
 
       function seatBooking(_x, _x2) {

@@ -32,12 +32,17 @@ function () {
       return new _db["default"]('Trip');
     }
   }, {
+    key: "bus",
+    value: function bus() {
+      return new _db["default"]('Bus');
+    }
+  }, {
     key: "createTrip",
     value: function () {
       var _createTrip = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee(req, res) {
-        var _req$body, origin, destination, fare, bus_id, trip_date, trip;
+        var _req$body, origin, destination, fare, bus_id, trip_date, check, trip;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
@@ -46,9 +51,26 @@ function () {
                 _context.prev = 0;
                 _req$body = req.body, origin = _req$body.origin, destination = _req$body.destination, fare = _req$body.fare, bus_id = _req$body.bus_id, trip_date = _req$body.trip_date;
                 _context.next = 4;
-                return Trip.model().insert('origin, destination, fare, bus_id, trip_date', '$1, $2, $3, $4, $5', [origin, destination, fare, bus_id, trip_date]);
+                return Book.bus().select('*', 'bus_id=$1', [bus_id]);
 
               case 4:
+                check = _context.sent;
+
+                if (check[0]) {
+                  _context.next = 7;
+                  break;
+                }
+
+                return _context.abrupt("return", res.status(400).json({
+                  status: 'error',
+                  message: 'invalid bus id'
+                }));
+
+              case 7:
+                _context.next = 9;
+                return Trip.model().insert('origin, destination, fare, bus_id, trip_date, number_plate, model, capacity', '$1, $2, $3, $4, $5, $6, $7, $8', [origin, destination, fare, bus_id, trip_date, check[0].number_plate, check[0].model, check[0].capacity]);
+
+              case 9:
                 trip = _context.sent;
                 return _context.abrupt("return", res.status(201).json({
                   status: 'success',
@@ -59,24 +81,27 @@ function () {
                     destination: trip[0].destination,
                     trip_date: trip[0].trip_date,
                     fare: trip[0].fare,
+                    number_plate: check[0].number_plate,
+                    model: check[0].model,
+                    capacity: check[0].capacity,
                     status: trip[0].status
                   }
                 }));
 
-              case 8:
-                _context.prev = 8;
+              case 13:
+                _context.prev = 13;
                 _context.t0 = _context["catch"](0);
                 return _context.abrupt("return", res.status(500).json({
                   error: _context.t0.message,
                   e: _context.t0
                 }));
 
-              case 11:
+              case 16:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[0, 13]]);
       }));
 
       function createTrip(_x, _x2) {
