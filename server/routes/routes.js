@@ -23,8 +23,8 @@ const { createBus, getAllBus } = Bus
 
 const router = express.Router();
 // User
-router.post('/auth/signup', validateEmailExistence, signUp);
-router.post('/auth/signin', signIn);
+router.post('/auth/signup', validateRegisterationCredentials, validateEmailExistence, signUp);
+router.post('/auth/signin', validateSigninCredentials, signIn);
 router.get('/users', isAdmin, getAllUsers);
 
 // Trip
