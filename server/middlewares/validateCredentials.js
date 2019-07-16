@@ -13,6 +13,7 @@ const validateCredentials = (req, res, next, rules) => {
   }
   const errors = validator.errors.all();
   return res.status(400).json({
+    status: 'error',
     message: 'Invalid Credentials',
     errors
   });
