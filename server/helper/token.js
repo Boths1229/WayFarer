@@ -8,7 +8,7 @@ export const createToken = (data) => {
 
 export const verifyToken = (req, res, next) => {
   // const token = req.headers.authorization || req.params.token || req.headers['x-access-token'] || req.body.token;
-  const token = req.headers.token;
+  const token = req.headers.token || req.body.token;
   
   if (!token) {
     return res.status(403).json({
