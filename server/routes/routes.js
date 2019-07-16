@@ -23,23 +23,23 @@ const { createBus, getAllBus } = Bus
 
 const router = express.Router();
 // User
-router.post('/auth/signup', validateRegisterationCredentials, validateEmailExistence, signUp);
-router.post('/auth/signin', validateSigninCredentials, signIn);
+router.post('/auth/signup', validateEmailExistence, signUp);
+router.post('/auth/signin', signIn);
 router.get('/users', isAdmin, getAllUsers);
 
 // Trip
-router.post('/trips', validateTripCredentials, isAdmin, createTrip);
+router.post('/trips', isAdmin, createTrip);
 router.get('/trips', verifyToken, getAllTrips);
 router.patch('/trips/:tripId', isAdmin, cancelTrip);
 router.get('/trips?sort_by=destination.asc', verifyToken, getTripsDestination);
 
 // Booking
-router.post('/bookings', validateBookingCredentials, verifyToken, seatBooking);
+router.post('/bookings', verifyToken, seatBooking);
 router.get('/bookings', verifyToken, getAllBookings);
 router.delete('/bookings/:bookingId', verifyToken, deleteBooking);
 
 //Bus
-router.post('/bus', validateBusCredentials, isAdmin, createBus);
+router.post('/bus', isAdmin, createBus);
 router.get('/bus', isAdmin, getAllBus);
 
 export default router;
