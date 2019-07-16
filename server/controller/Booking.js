@@ -13,10 +13,10 @@ class Book {
     static async seatBooking(req, res) {
         try {
           const {
-          id
+          trip_id
           } = req.body; 
 
-          const check = await Book.trips().select('*', 'id=$1', [id]);
+          const check = await Book.trips().select('*', 'trip_id=$1', [trip_id]);
           if (!check[0]) {
             return res.status(400).json({
                 status: 'error',
@@ -27,7 +27,7 @@ class Book {
           const seatCheck = await Book.seat().select('*', 'bus_id=$1', [busId]);
           const busCapacity = seatCheck[0].capacity;
           
-          const bookingId = await Book.model().select('*', `id=${check[0].id}`)
+          const bookingId = await Book.model().select('*', `trip_id=${check[0].trip_id}`)
           if (bookingId.length > busCapacity ) {
             return res.status(400).json({
               status: 'error',
