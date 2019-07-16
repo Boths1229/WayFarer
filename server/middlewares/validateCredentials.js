@@ -1,7 +1,5 @@
 import Validator from 'validatorjs';
-import debug from 'debug';
 
-const Debug = debug('http');
 const errorMessages = {
   required: 'the :attribute is required',
   email: 'the email format is invalid',
@@ -67,4 +65,3 @@ export const validateBusCredentials = (req, res, next) => {
   };
   return validateCredentials(req, res, next, rules);
 };
-Debug(`Server starting on port: ${req.body}`);
