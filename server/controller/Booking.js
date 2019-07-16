@@ -36,13 +36,14 @@ class Book {
           }
           const seatsBooked = bookingId.length
           const book = await Book.model().insert(
-            'trip_id, user_id, bus_id, trip_date, seat_number, number_plate, model, first_name, last_name, email', '$1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11',
+            'trip_id, user_id, bus_id, trip_date, seat_number, number_plate, model, first_name, last_name, email', '$1, $2, $3, $4, $5, $6, $7, $8, $9, $10',
             [check[0].trip_id, req.user.userId, check[0].bus_id, check[0].trip_date, seatsBooked, seatCheck[0].number_plate, seatCheck[0].model, req.user.firstName, req.user.lastName, req.user.email]
           );
           
               return res.status(201).json({
                 status: 'success',
                 data: {
+                  id: book[0].id,
                   booking_id: book[0].booking_id,
                   user_id: book[0].user_id,
                   trip_id: check[0].trip_id,
@@ -66,7 +67,7 @@ class Book {
       static async getAllBookings(req, res) {
         try {
             if ( req.user.isAdmin === false ) {    
-                const rows = await Book.model().select('booking_id, user_id, trip_id, bus_id, trip_date, seat_number, number_plate, model, first_name, last_name, email', `user_id=${req.user.userId}`);
+                const rows = await Book.model().select('id, booking_id, user_id, trip_id, bus_id, trip_date, seat_number, number_plate, model, first_name, last_name, email', `user_id=${req.user.userId}`);
                 
                 if (rows.length === 0) {
                   return res.status(400).json({
@@ -82,7 +83,7 @@ class Book {
                 });
               }
            if ( req.user.isAdmin === true ) {    
-          const rows = await Book.model().select('booking_id, user_id, trip_id, bus_id, trip_date, seat_number, number_plate, model, first_name, last_name, email');
+          const rows = await Book.model().select('id, booking_id, user_id, trip_id, bus_id, trip_date, seat_number, number_plate, model, first_name, last_name, email');
           
           if (rows.length === 0) {
             return res.status(400).json({
@@ -120,6 +121,7 @@ class Book {
                 status: 'success',
                 data: {
                     message: 'Booking deleted successfully',
+                    id: rows.id,
                     booking_id: rows.booking_id,
                     trip_id: rows.trip_id,
                     bus_id: rows.bus_id,

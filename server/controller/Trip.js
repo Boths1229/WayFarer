@@ -27,6 +27,7 @@ class Trip {
           return res.status(201).json({
             status: 'success',
             data: {
+              id: trip[0].id,
               trip_id: trip[0].trip_id,
               bus_id: trip[0].bus_id,
               origin: trip[0].origin,
@@ -49,7 +50,7 @@ class Trip {
 
       static async getAllTrips(req, res) {
         try {
-          const rows = await Trip.model().select('trip_id, bus_id, origin, destination, trip_date, number_plate, model, capacity, fare, status');
+          const rows = await Trip.model().select('id, trip_id, bus_id, origin, destination, trip_date, number_plate, model, capacity, fare, status');
           if (rows.length === 0) {
             return res.status(400).json({
               status: 'error',  
@@ -80,6 +81,7 @@ class Trip {
               status: 'success',
               data: {
                 message: 'Trip Cancelled Successfully',
+                id: rows.id,
                 trip_id: rows.trip_id,
                 bus_id: rows.bus_id,
                 origin: rows.origin,
@@ -102,6 +104,30 @@ class Trip {
           });
         }
       }
+      static async getTripsDestination(req, res) {
+        try {
+          const { destination } = req.params;
+          const rows = await Trip.model().select('*', `destination=${destination}`);
+          if (rows.length === 0) {
+            return res.status(400).json({
+              status: 'error',  
+              message: 'No trip found'
+            });
+          }
+    
+          return res.status(200).json({
+            status: 'success',
+            data: rows,
+    
+          });
+        } catch (e) {
+          return res.status(500).json({
+            error: 'server error',
+            e
+          });
+        }
+      }
+    
   }
   
   export default Trip;

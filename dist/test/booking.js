@@ -14,14 +14,11 @@ var _token = require("../helper/token");
 
 var _users = _interopRequireDefault(require("../models/users"));
 
-var _bus = _interopRequireDefault(require("../models/bus"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 _chai["default"].use(_chaiHttp["default"]);
 
 var expect = _chai["default"].expect;
-var busCapacity = _bus["default"][0].capacity;
 var isAdmin = _users["default"][1].is_admin;
 var firstName = _users["default"][1].first_name;
 var lastName = _users["default"][1].last_name;
@@ -49,6 +46,7 @@ describe('Booking test', function () {
         console.log('this is the body ', res.body);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.equal('success');
+        expect(res.body.data.id).to.equal(1);
         expect(res.body.data.booking_id).to.equal(1);
         expect(res.body.data.user_id).to.equal(2);
         expect(res.body.data.trip_id).to.equal(1);
@@ -90,6 +88,7 @@ describe('Booking test', function () {
         expect(res.body).to.be.an('object');
         expect(res.status).to.equal(200);
         expect(res.body.data.message).to.equal('Booking deleted successfully');
+        expect(res.body.data.id).to.equal(1);
         expect(res.body.data.booking_id).to.equal(1);
         expect(res.body.data.trip_id).to.equal(1);
         expect(res.body.data.bus_id).to.equal(5);

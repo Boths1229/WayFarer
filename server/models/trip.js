@@ -1,5 +1,6 @@
 const trip = [
     {
+      id: 1,
       trip_id: 1,
       bus_id: 5,
       origin: 'yaba', // starting location

@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var trip = [{
+  id: 1,
   trip_id: 1,
   bus_id: 5,
   origin: 'yaba',

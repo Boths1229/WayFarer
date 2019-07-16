@@ -35,6 +35,7 @@ describe('Booking test', () => {
           console.log('this is the body ', res.body);
           expect(res.body).to.be.an('object');
           expect(res.body.status).to.equal('success');
+          expect(res.body.data.id).to.equal(1);
           expect(res.body.data.booking_id).to.equal(1);
           expect(res.body.data.user_id).to.equal(2);
           expect(res.body.data.trip_id).to.equal(1);
@@ -93,6 +94,7 @@ describe('Booking test', () => {
           expect(res.body).to.be.an('object');
           expect(res.status).to.equal(200);
           expect(res.body.data.message).to.equal('Booking deleted successfully');
+          expect(res.body.data.id).to.equal(1);
           expect(res.body.data.booking_id).to.equal(1);
           expect(res.body.data.trip_id).to.equal(1);
           expect(res.body.data.bus_id).to.equal(5);
