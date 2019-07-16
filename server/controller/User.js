@@ -46,7 +46,12 @@ class User {
         'email, first_name, last_name, password',
         `'${email}', '${first_name}', '${last_name}', '${password}'`
       );
-
+      if (rows[0].length === 0) {
+        return res.status(400).json({
+          status: 'error',  
+          message: 'No user found'
+        });
+      }
       return res.status(201).json({
         status: 'success',
         data: {
@@ -70,6 +75,13 @@ class User {
     try {
       const { email, password } = req.body;
       const registered = await User.model().select('*', 'email=$1', [email]);
+      
+      if (registered[0].length === 0) {
+        return res.status(400).json({
+          status: 'error',  
+          message: 'user not found'
+        });
+      }
 
       if (registered[0] && pass.decryptPassword(password, registered[0].password)) {
         const isAdmin = registered[0].is_admin;

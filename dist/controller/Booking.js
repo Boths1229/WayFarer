@@ -104,6 +104,7 @@ function () {
                 return _context.abrupt("return", res.status(201).json({
                   status: 'success',
                   data: {
+                    id: book[0].id,
                     booking_id: book[0].booking_id,
                     user_id: book[0].user_id,
                     trip_id: check[0].trip_id,
@@ -160,7 +161,7 @@ function () {
                 }
 
                 _context2.next = 4;
-                return Book.model().select('booking_id, user_id, trip_id, bus_id, trip_date, seat_number, number_plate, model, first_name, last_name, email', "user_id=".concat(req.user.userId));
+                return Book.model().select('id, booking_id, user_id, trip_id, bus_id, trip_date, seat_number, number_plate, model, first_name, last_name, email', "user_id=".concat(req.user.userId));
 
               case 4:
                 rows = _context2.sent;
@@ -188,7 +189,7 @@ function () {
                 }
 
                 _context2.next = 11;
-                return Book.model().select('booking_id, user_id, trip_id, bus_id, trip_date, seat_number, number_plate, model, first_name, last_name, email');
+                return Book.model().select('id, booking_id, user_id, trip_id, bus_id, trip_date, seat_number, number_plate, model, first_name, last_name, email');
 
               case 11:
                 _rows = _context2.sent;
@@ -274,6 +275,7 @@ function () {
                   status: 'success',
                   data: {
                     message: 'Booking deleted successfully',
+                    id: rows.id,
                     booking_id: rows.booking_id,
                     trip_id: rows.trip_id,
                     bus_id: rows.bus_id,

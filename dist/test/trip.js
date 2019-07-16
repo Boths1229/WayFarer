@@ -45,6 +45,7 @@ describe('Trip test', function () {
       _chai["default"].request(_server["default"]).post('/api/v1/trips').set('Accept', 'application/json').set("Authorization", token).send(_trip["default"][0]).end(function (err, res) {
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.equal('success');
+        expect(res.body.data.id).to.equal(1);
         expect(res.body.data.trip_id).to.equal(1);
         expect(res.body.data.bus_id).to.equal(5);
         expect(res.body.data.origin).to.equal('yaba');
@@ -98,6 +99,7 @@ describe('Trip test', function () {
         expect(res.body).to.be.an('object');
         expect(res.status).to.equal(200);
         expect(res.body.data.message).to.equal('Trip Cancelled Successfully');
+        expect(res.body.data.id).to.equal(1);
         expect(res.body.data.trip_id).to.equal(1);
         expect(res.body.data.bus_id).to.equal(1);
         expect(res.body.data.origin).to.equal('yaba');

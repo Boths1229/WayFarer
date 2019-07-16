@@ -117,6 +117,18 @@ function () {
 
               case 7:
                 rows = _context2.sent;
+
+                if (!(rows[0].length === 0)) {
+                  _context2.next = 10;
+                  break;
+                }
+
+                return _context2.abrupt("return", res.status(400).json({
+                  status: 'error',
+                  message: 'No user found'
+                }));
+
+              case 10:
                 return _context2.abrupt("return", res.status(201).json({
                   status: 'success',
                   data: {
@@ -129,20 +141,20 @@ function () {
                   }
                 }));
 
-              case 11:
-                _context2.prev = 11;
+              case 13:
+                _context2.prev = 13;
                 _context2.t0 = _context2["catch"](0);
                 return _context2.abrupt("return", res.status(500).json({
                   error: _context2.t0.message,
                   e: _context2.t0
                 }));
 
-              case 14:
+              case 16:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 11]]);
+        }, _callee2, null, [[0, 13]]);
       }));
 
       function signUp(_x3, _x4) {
@@ -171,8 +183,19 @@ function () {
               case 4:
                 registered = _context3.sent;
 
+                if (!(registered[0].length === 0)) {
+                  _context3.next = 7;
+                  break;
+                }
+
+                return _context3.abrupt("return", res.status(400).json({
+                  status: 'error',
+                  message: 'user not found'
+                }));
+
+              case 7:
                 if (!(registered[0] && _password["default"].decryptPassword(password, registered[0].password))) {
-                  _context3.next = 12;
+                  _context3.next = 14;
                   break;
                 }
 
@@ -200,26 +223,26 @@ function () {
                   }
                 }));
 
-              case 12:
+              case 14:
                 return _context3.abrupt("return", res.status(401).json({
                   status: 'error',
                   message: 'invalid email or password'
                 }));
 
-              case 15:
-                _context3.prev = 15;
+              case 17:
+                _context3.prev = 17;
                 _context3.t0 = _context3["catch"](0);
                 return _context3.abrupt("return", res.status(500).json({
                   error: 'server error',
                   e: _context3.t0
                 }));
 
-              case 18:
+              case 20:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, null, [[0, 15]]);
+        }, _callee3, null, [[0, 17]]);
       }));
 
       function signIn(_x5, _x6) {

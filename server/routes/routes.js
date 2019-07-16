@@ -15,7 +15,7 @@ import { isAdmin } from '../middlewares/isAdmin';
 const {
   signUp, signIn, getAllUsers
 } = User;
-const { createTrip, getAllTrips, cancelTrip 
+const { createTrip, getAllTrips, cancelTrip, getTripsDestination
 } = Trip;
 const { seatBooking, getAllBookings, deleteBooking
 } = Booking;
@@ -31,6 +31,7 @@ router.get('/users', isAdmin, getAllUsers);
 router.post('/trips', validateTripCredentials, isAdmin, createTrip);
 router.get('/trips', verifyToken, getAllTrips);
 router.patch('/trips/:tripId', isAdmin, cancelTrip);
+router.get('/trips?sort_by=destination.asc', verifyToken, getTripsDestination);
 
 // Booking
 router.post('/bookings', validateBookingCredentials, verifyToken, seatBooking);

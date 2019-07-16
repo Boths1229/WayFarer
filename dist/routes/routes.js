@@ -30,7 +30,8 @@ var signUp = _User["default"].signUp,
     getAllUsers = _User["default"].getAllUsers;
 var createTrip = _Trip["default"].createTrip,
     getAllTrips = _Trip["default"].getAllTrips,
-    cancelTrip = _Trip["default"].cancelTrip;
+    cancelTrip = _Trip["default"].cancelTrip,
+    getTripsDestination = _Trip["default"].getTripsDestination;
 var seatBooking = _Booking["default"].seatBooking,
     getAllBookings = _Booking["default"].getAllBookings,
     deleteBooking = _Booking["default"].deleteBooking;
@@ -46,7 +47,8 @@ router.get('/users', _isAdmin.isAdmin, getAllUsers); // Trip
 
 router.post('/trips', _validateCredentials.validateTripCredentials, _isAdmin.isAdmin, createTrip);
 router.get('/trips', _token.verifyToken, getAllTrips);
-router.patch('/trips/:tripId', _isAdmin.isAdmin, cancelTrip); // Booking
+router.patch('/trips/:tripId', _isAdmin.isAdmin, cancelTrip);
+router.get('/trips?sort_by=destination.asc', _token.verifyToken, getTripsDestination); // Booking
 
 router.post('/bookings', _validateCredentials.validateBookingCredentials, _token.verifyToken, seatBooking);
 router.get('/bookings', _token.verifyToken, getAllBookings);
