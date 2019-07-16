@@ -24,6 +24,7 @@ var validateCredentials = function validateCredentials(req, res, next, rules) {
 
   var errors = validator.errors.all();
   return res.status(400).json({
+    status: 'error',
     message: 'Invalid Credentials',
     errors: errors
   });

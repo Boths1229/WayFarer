@@ -1,4 +1,8 @@
 import Model from '../models/db';
+import debug from 'debug';
+
+
+const Debug = debug('http');
 
 class Trip {
     static model() {
@@ -19,9 +23,10 @@ class Trip {
                 message: 'invalid bus id',
             });
           }
+          Debug('here are the', req.body)
           const trip = await Trip.model().insert(
             'origin, destination, fare, bus_id, trip_date, number_plate, model, capacity', '$1, $2, $3, $4, $5, $6, $7, $8',
-            [origin, destination, fare, check[0].bus_id, trip_date, check[0].number_plate, check[0].model, check[0].capacity]
+            [origin, destination, fare, bus_id, trip_date, check[0].number_plate, check[0].model, check[0].capacity]
           );
     
           return res.status(201).json({
@@ -29,7 +34,7 @@ class Trip {
             data: {
               id: trip[0].id,
               trip_id: trip[0].trip_id,
-              bus_id: check[0].bus_id,
+              bus_id: trip[0].bus_id,
               origin: trip[0].origin,
               destination: trip[0].destination,
               trip_date: trip[0].trip_date,
