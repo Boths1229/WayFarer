@@ -41,20 +41,20 @@ var createBus = _Bus["default"].createBus,
 var router = _express["default"].Router(); // User
 
 
-router.post('/auth/signup', _validateCredentials.validateRegisterationCredentials, _validateEmailExistence["default"], signUp);
-router.post('/auth/signin', _validateCredentials.validateSigninCredentials, signIn);
+router.post('/auth/signup', _validateEmailExistence["default"], signUp);
+router.post('/auth/signin', signIn);
 router.get('/users', _isAdmin.isAdmin, getAllUsers); // Trip
 
-router.post('/trips', _validateCredentials.validateTripCredentials, _isAdmin.isAdmin, createTrip);
+router.post('/trips', _isAdmin.isAdmin, createTrip);
 router.get('/trips', _token.verifyToken, getAllTrips);
 router.patch('/trips/:tripId', _isAdmin.isAdmin, cancelTrip);
 router.get('/trips?sort_by=destination.asc', _token.verifyToken, getTripsDestination); // Booking
 
-router.post('/bookings', _validateCredentials.validateBookingCredentials, _token.verifyToken, seatBooking);
+router.post('/bookings', _token.verifyToken, seatBooking);
 router.get('/bookings', _token.verifyToken, getAllBookings);
 router["delete"]('/bookings/:bookingId', _token.verifyToken, deleteBooking); //Bus
 
-router.post('/bus', _validateCredentials.validateBusCredentials, _isAdmin.isAdmin, createBus);
+router.post('/bus', _isAdmin.isAdmin, createBus);
 router.get('/bus', _isAdmin.isAdmin, getAllBus);
 var _default = router;
 exports["default"] = _default;

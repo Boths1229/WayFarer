@@ -97,7 +97,7 @@ function () {
               case 17:
                 seatsBooked = bookingId.length;
                 _context.next = 20;
-                return Book.model().insert('trip_id, user_id, bus_id, trip_date, seat_number, number_plate, model, first_name, last_name, email', '$1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11', [check[0].trip_id, req.user.userId, check[0].bus_id, check[0].trip_date, seatsBooked, seatCheck[0].number_plate, seatCheck[0].model, req.user.firstName, req.user.lastName, req.user.email]);
+                return Book.model().insert('trip_id, user_id, bus_id, trip_date, seat_number, number_plate, model, first_name, last_name, email', '$1, $2, $3, $4, $5, $6, $7, $8, $9, $10', [check[0].trip_id, req.user.userId, check[0].bus_id, check[0].trip_date, seatsBooked, seatCheck[0].number_plate, seatCheck[0].model, req.user.firstName, req.user.lastName, req.user.email]);
 
               case 20:
                 book = _context.sent;

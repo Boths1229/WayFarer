@@ -47,7 +47,6 @@ class Trip {
           });
         }
       }
-
       static async getAllTrips(req, res) {
         try {
           const rows = await Trip.model().select('id, trip_id, bus_id, origin, destination, trip_date, number_plate, model, capacity, fare, status');

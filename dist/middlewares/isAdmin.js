@@ -10,7 +10,8 @@ var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var isAdmin = function isAdmin(req, res, next) {
-  var token = req.headers.authorization || req.params.token || req.headers['x-access-token'] || req.body.token;
+  // const token = req.headers.authorization || req.params.token || req.headers['x-access-token'] || req.body.token;
+  var token = req.headers['x-access-token'] || req.headers.token || req.body.token;
 
   if (!token) {
     return res.status(403).json({
