@@ -23,9 +23,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var User =
-/*#__PURE__*/
-function () {
+var User = /*#__PURE__*/function () {
   function User() {
     _classCallCheck(this, User);
   }
@@ -38,9 +36,7 @@ function () {
   }, {
     key: "getAllUsers",
     value: function () {
-      var _getAllUsers = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(req, res) {
+      var _getAllUsers = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
         var rows;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
@@ -94,9 +90,7 @@ function () {
   }, {
     key: "signUp",
     value: function () {
-      var _signUp = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(req, res) {
+      var _signUp = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
         var _req$body, email, first_name, last_name, password, token, rows;
 
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
@@ -166,9 +160,7 @@ function () {
   }, {
     key: "signIn",
     value: function () {
-      var _signIn = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee3(req, res) {
+      var _signIn = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res) {
         var _req$body2, email, password, registered, isAdmin, userId, firstName, lastName, token;
 
         return regeneratorRuntime.wrap(function _callee3$(_context3) {

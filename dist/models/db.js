@@ -29,9 +29,7 @@ _dotenv["default"].config();
 
 var env = process.env.NODE_ENV;
 
-var Model =
-/*#__PURE__*/
-function () {
+var Model = /*#__PURE__*/function () {
   function Model(table) {
     _classCallCheck(this, Model);
 
@@ -47,9 +45,7 @@ function () {
   _createClass(Model, [{
     key: "select",
     value: function () {
-      var _select = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(columns, clause, values) {
+      var _select = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(columns, clause, values) {
         var query, _ref, rows;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -94,9 +90,7 @@ function () {
   }, {
     key: "insert",
     value: function () {
-      var _insert = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(columns, selector, values) {
+      var _insert = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(columns, selector, values) {
         var query, _ref2, rows;
 
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
@@ -136,9 +130,7 @@ function () {
   }, {
     key: "update",
     value: function () {
-      var _update = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee3(columns, clause, values) {
+      var _update = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(columns, clause, values) {
         var query, _ref3, rows;
 
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
@@ -177,9 +169,7 @@ function () {
   }, {
     key: "delete",
     value: function () {
-      var _delete2 = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee4(clause, values) {
+      var _delete2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(clause, values) {
         var query, _ref4, rows;
 
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
