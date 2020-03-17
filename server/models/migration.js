@@ -110,6 +110,31 @@ INSERT INTO Booking (
        'emma',
        'boths'
 );
+DROP TABLE IF EXISTS loans CASCADE;
+CREATE TABLE loans(
+    id SERIAL NOT NULL PRIMARY KEY,
+	fullName VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
+    date TIMESTAMP,
+    amount VARCHAR NOT NULL,
+    homeAddress VARCHAR NOT NULL,
+    officeAddress VARCHAR NOT NULL,
+    verified BOOLEAN NOT NULL DEFAULT false,
+    approved BOOLEAN NOT NULL DEFAULT false
+);
+INSERT INTO loans (
+    id, fullName, email, date, amount, homeAddress, officeAddress, verified, approved
+    ) VALUES (
+         1,
+        'Somkene Bryan Chukwuma',
+        'kene@yahoo.com',
+        '2019-07-12 08:39:35 +0000',
+         5000,
+        'rd 17 diamond estate isheri',
+        'egbada lagos',
+        false,
+        false
+);
 `);
 
 export default migrate;
