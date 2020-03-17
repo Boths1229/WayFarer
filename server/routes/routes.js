@@ -25,7 +25,7 @@ const router = express.Router();
 // User
 router.post('/auth/signup', validateEmailExistence, signUp);
 router.post('/auth/signin', signIn);
-router.get('/users', isAdmin, getAllUsers);
+router.get('/users', getAllUsers);
 
 // Trip
 router.post('/trips', isAdmin, createTrip);
