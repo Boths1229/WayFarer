@@ -61,7 +61,7 @@ var User = /*#__PURE__*/function () {
 
               case 6:
                 return _context.abrupt("return", res.status(200).json({
-                  status: 'success',
+                  message: 'success',
                   data: rows
                 }));
 

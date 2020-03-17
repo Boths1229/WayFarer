@@ -15,6 +15,8 @@ var _Bus = _interopRequireDefault(require("../controller/Bus"));
 
 var _Booking = _interopRequireDefault(require("../controller/Booking"));
 
+var _Loans = _interopRequireDefault(require("../controller/Loans"));
+
 var _validateCredentials = require("../middlewares/validateCredentials");
 
 var _validateEmailExistence = _interopRequireDefault(require("../middlewares/validateEmailExistence"));
@@ -37,13 +39,15 @@ var seatBooking = _Booking["default"].seatBooking,
     deleteBooking = _Booking["default"].deleteBooking;
 var createBus = _Bus["default"].createBus,
     getAllBus = _Bus["default"].getAllBus;
+var getAllLoans = _Loans["default"].getAllLoans,
+    applyLoan = _Loans["default"].applyLoan;
 
 var router = _express["default"].Router(); // User
 
 
 router.post('/auth/signup', _validateEmailExistence["default"], signUp);
 router.post('/auth/signin', signIn);
-router.get('/users', _isAdmin.isAdmin, getAllUsers); // Trip
+router.get('/users', getAllUsers); // Trip
 
 router.post('/trips', _isAdmin.isAdmin, createTrip);
 router.get('/trips', _token.verifyToken, getAllTrips);
@@ -52,9 +56,12 @@ router.get('/trips?sort_by=destination.asc', _token.verifyToken, getTripsDestina
 
 router.post('/bookings', _token.verifyToken, seatBooking);
 router.get('/bookings', _token.verifyToken, getAllBookings);
-router["delete"]('/bookings/:bookingId', _token.verifyToken, deleteBooking); //Bus
+router["delete"]('/bookings/:bookingId', _token.verifyToken, deleteBooking); // Bus
 
 router.post('/bus', _isAdmin.isAdmin, createBus);
-router.get('/bus', _isAdmin.isAdmin, getAllBus);
+router.get('/bus', _isAdmin.isAdmin, getAllBus); // Loans
+
+router.post('/loans', _token.verifyToken, applyLoan);
+router.get('/loans', getAllLoans);
 var _default = router;
 exports["default"] = _default;
