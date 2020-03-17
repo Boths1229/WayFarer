@@ -65,3 +65,14 @@ export const validateBusCredentials = (req, res, next) => {
   };
   return validateCredentials(req, res, next, rules);
 };
+
+export const validateLoanCredentials = (req, res, next) => {
+  const rules = {
+    FullName: 'required',
+    email: 'required|email',
+    amount: 'required',
+    homeAddress: 'required',
+    officeAddress: 'required'
+  };
+  return validateCredentials(req, res, next, rules);
+};

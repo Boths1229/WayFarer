@@ -61,7 +61,7 @@ router["delete"]('/bookings/:bookingId', _token.verifyToken, deleteBooking); // 
 router.post('/bus', _isAdmin.isAdmin, createBus);
 router.get('/bus', _isAdmin.isAdmin, getAllBus); // Loans
 
-router.post('/loans', _token.verifyToken, applyLoan);
+router.post('/loans', _token.verifyToken, _validateCredentials.validateLoanCredentials, applyLoan);
 router.get('/loans', getAllLoans);
 var _default = router;
 exports["default"] = _default;

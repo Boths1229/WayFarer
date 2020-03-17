@@ -49,7 +49,7 @@ describe('Loan test', () => {
     });
   });
 
-  describe('POST booking details in incomplete api/v1/bookings', () => {
+  describe('POST booking details in incomplete api/v1/loans', () => {
     it('should return error when user booking details is incomplete', (done) => {
       chai.request(server)
         .post('/api/v1/loans')

@@ -6,7 +6,7 @@ import Booking from '../controller/Booking';
 import Loans from '../controller/Loans';
 import {
   validateRegisterationCredentials, validateSigninCredentials, validateTripCredentials, validateBookingCredentials,
-  validateBusCredentials
+  validateBusCredentials, validateLoanCredentials
 } from '../middlewares/validateCredentials';
 import validateEmailExistence from '../middlewares/validateEmailExistence';
 import { verifyToken } from '../helper/token';
@@ -45,7 +45,7 @@ router.post('/bus', isAdmin, createBus);
 router.get('/bus', isAdmin, getAllBus);
 
 // Loans
-router.post('/loans', verifyToken, applyLoan);
+router.post('/loans', verifyToken, validateLoanCredentials, applyLoan);
 router.get('/loans', getAllLoans);
 
 export default router;
