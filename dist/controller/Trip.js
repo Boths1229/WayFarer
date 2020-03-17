@@ -19,9 +19,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var Trip =
-/*#__PURE__*/
-function () {
+var Trip = /*#__PURE__*/function () {
   function Trip() {
     _classCallCheck(this, Trip);
   }
@@ -39,9 +37,7 @@ function () {
   }, {
     key: "createTrip",
     value: function () {
-      var _createTrip = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(req, res) {
+      var _createTrip = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
         var _req$body, origin, destination, fare, bus_id, trip_date, check, trip;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -114,9 +110,7 @@ function () {
   }, {
     key: "getAllTrips",
     value: function () {
-      var _getAllTrips = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(req, res) {
+      var _getAllTrips = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
         var rows;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
@@ -170,9 +164,7 @@ function () {
   }, {
     key: "cancelTrip",
     value: function () {
-      var _cancelTrip = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee3(req, res) {
+      var _cancelTrip = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res) {
         var tripId, rows;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
@@ -237,9 +229,7 @@ function () {
   }, {
     key: "getTripsDestination",
     value: function () {
-      var _getTripsDestination = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee4(req, res) {
+      var _getTripsDestination = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(req, res) {
         var destination, rows;
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {

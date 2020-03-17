@@ -19,9 +19,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var Book =
-/*#__PURE__*/
-function () {
+var Book = /*#__PURE__*/function () {
   function Book() {
     _classCallCheck(this, Book);
   }
@@ -44,9 +42,7 @@ function () {
   }, {
     key: "seatBooking",
     value: function () {
-      var _seatBooking = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(req, res) {
+      var _seatBooking = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
         var trip_id, check, busId, seatCheck, busCapacity, bookingId, seatsBooked, book;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
@@ -144,9 +140,7 @@ function () {
   }, {
     key: "getAllBookings",
     value: function () {
-      var _getAllBookings = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(req, res) {
+      var _getAllBookings = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
         var rows, _rows;
 
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
@@ -239,9 +233,7 @@ function () {
   }, {
     key: "deleteBooking",
     value: function () {
-      var _deleteBooking = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee3(req, res) {
+      var _deleteBooking = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res) {
         var bookingId, rows;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {

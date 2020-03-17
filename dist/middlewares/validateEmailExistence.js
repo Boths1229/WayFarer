@@ -15,12 +15,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var model = new _db["default"]('users');
 
-var validateEmailExistence =
-/*#__PURE__*/
-function () {
-  var _ref = _asyncToGenerator(
-  /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee(req, res, next) {
+var validateEmailExistence = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res, next) {
     var email, user;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {

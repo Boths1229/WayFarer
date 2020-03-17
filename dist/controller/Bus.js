@@ -19,9 +19,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var Bus =
-/*#__PURE__*/
-function () {
+var Bus = /*#__PURE__*/function () {
   function Bus() {
     _classCallCheck(this, Bus);
   }
@@ -34,9 +32,7 @@ function () {
   }, {
     key: "createBus",
     value: function () {
-      var _createBus = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(req, res) {
+      var _createBus = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
         var _req$body, number_plate, manufacturer, model, year, capacity, bus;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -87,9 +83,7 @@ function () {
   }, {
     key: "getAllBus",
     value: function () {
-      var _getAllBus = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(req, res) {
+      var _getAllBus = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
         var rows;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
