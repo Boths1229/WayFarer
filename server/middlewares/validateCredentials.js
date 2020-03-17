@@ -68,7 +68,7 @@ export const validateBusCredentials = (req, res, next) => {
 
 export const validateLoanCredentials = (req, res, next) => {
   const rules = {
-    FullName: 'required',
+    fullName: 'required',
     email: 'required|email',
     amount: 'required',
     homeAddress: 'required',
