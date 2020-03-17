@@ -19,7 +19,8 @@ class User {
       }
 
       return res.status(200).json({
-        data: rows,
+        message: 'success',
+        data: rows
 
       });
     } catch (e) {

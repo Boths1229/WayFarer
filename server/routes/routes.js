@@ -3,6 +3,7 @@ import User from '../controller/User';
 import Trip from '../controller/Trip';
 import Bus from '../controller/Bus';
 import Booking from '../controller/Booking';
+import Loans from '../controller/Loans';
 import {
   validateRegisterationCredentials, validateSigninCredentials, validateTripCredentials, validateBookingCredentials, 
   validateBusCredentials
@@ -19,7 +20,8 @@ const { createTrip, getAllTrips, cancelTrip, getTripsDestination
 } = Trip;
 const { seatBooking, getAllBookings, deleteBooking
 } = Booking;
-const { createBus, getAllBus } = Bus
+const { createBus, getAllBus } = Bus;
+const { getAllLoans, applyLoan } = Loans;
 
 const router = express.Router();
 // User
@@ -41,5 +43,9 @@ router.delete('/bookings/:bookingId', verifyToken, deleteBooking);
 //Bus
 router.post('/bus', isAdmin, createBus);
 router.get('/bus', isAdmin, getAllBus);
+
+// Loans
+router.post('/loans', verifyToken, applyLoan);
+router.get('/loans', getAllLoans);
 
 export default router;
