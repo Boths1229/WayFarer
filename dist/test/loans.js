@@ -59,7 +59,7 @@ describe('Loan test', function () {
       });
     });
   });
-  describe('POST booking details in incomplete api/v1/bookings', function () {
+  describe('POST booking details in incomplete api/v1/loans', function () {
     it('should return error when user booking details is incomplete', function (done) {
       _chai["default"].request(_server["default"]).post('/api/v1/loans').set('Accept', 'application/json').send(_loans["default"][1]).end(function (err, res) {
         var amount = res.body.errors.amount;

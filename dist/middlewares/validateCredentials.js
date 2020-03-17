@@ -89,7 +89,7 @@ exports.validateBusCredentials = validateBusCredentials;
 
 var validateLoanCredentials = function validateLoanCredentials(req, res, next) {
   var rules = {
-    FullName: 'required',
+    fullName: 'required',
     email: 'required|email',
     amount: 'required',
     homeAddress: 'required',
