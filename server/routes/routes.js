@@ -5,7 +5,7 @@ import Bus from '../controller/Bus';
 import Booking from '../controller/Booking';
 import Loans from '../controller/Loans';
 import {
-  validateRegisterationCredentials, validateSigninCredentials, validateTripCredentials, validateBookingCredentials, 
+  validateRegisterationCredentials, validateSigninCredentials, validateTripCredentials, validateBookingCredentials,
   validateBusCredentials
 } from '../middlewares/validateCredentials';
 import validateEmailExistence from '../middlewares/validateEmailExistence';
@@ -16,10 +16,10 @@ import { isAdmin } from '../middlewares/isAdmin';
 const {
   signUp, signIn, getAllUsers
 } = User;
-const { createTrip, getAllTrips, cancelTrip, getTripsDestination
+const {
+  createTrip, getAllTrips, cancelTrip, getTripsDestination
 } = Trip;
-const { seatBooking, getAllBookings, deleteBooking
-} = Booking;
+const { seatBooking, getAllBookings, deleteBooking } = Booking;
 const { createBus, getAllBus } = Bus;
 const { getAllLoans, applyLoan } = Loans;
 
@@ -40,7 +40,7 @@ router.post('/bookings', verifyToken, seatBooking);
 router.get('/bookings', verifyToken, getAllBookings);
 router.delete('/bookings/:bookingId', verifyToken, deleteBooking);
 
-//Bus
+// Bus
 router.post('/bus', isAdmin, createBus);
 router.get('/bus', isAdmin, getAllBus);
 
