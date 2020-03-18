@@ -49,7 +49,7 @@ describe('Loan test', function () {
         expect(res.body.data.id).to.equal(1);
         expect(res.body.data.fullName).to.equal('Somkene Bryan Chukwuma');
         expect(res.body.data.email).to.equal('kene@yahoo.com');
-        expect(res.body.data.date).to.equal('2019-07-12 08:39:35 +0000');
+        expect(res.body.data.date).to.equal('2017-08-15 21:05:15.723336+07');
         expect(res.body.data.amount).to.equal(5000);
         expect(res.body.data.homeAddress).to.equal('rd 17 diamond estate isheri');
         expect(res.body.data.officeAddress).to.equal('egbada lagos');
