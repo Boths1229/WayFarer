@@ -117,6 +117,7 @@ var Loans = /*#__PURE__*/function () {
                     id: rows[0].id,
                     fullName: rows[0].fullName,
                     email: rows[0].email,
+                    date: rows[0].date,
                     amount: rows[0].amount,
                     homeAddress: rows[0].homeAddress,
                     officeAddress: rows[0].officeAddress,

@@ -115,7 +115,7 @@ CREATE TABLE loans(
     id SERIAL NOT NULL PRIMARY KEY,
 	fullName VARCHAR NOT NULL,
     email VARCHAR NOT NULL,
-    date TIMESTAMP DEFAULT NOW(),
+    date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     amount VARCHAR NOT NULL,
     homeAddress VARCHAR NOT NULL,
     officeAddress VARCHAR NOT NULL,
@@ -127,7 +127,8 @@ INSERT INTO loans (
     ) VALUES (
          1,
         'Somkene Bryan Chukwuma',
-        'kene@yahoo.com'
+        'kene@yahoo.com',
+        'Testing current_timestamp function',
          5000,
         'rd 17 diamond estate isheri',
         'egbada lagos',
