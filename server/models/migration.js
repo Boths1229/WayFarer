@@ -115,7 +115,7 @@ CREATE TABLE loans(
     id SERIAL NOT NULL PRIMARY KEY,
 	fullName VARCHAR NOT NULL,
     email VARCHAR NOT NULL,
-    date TIMESTAMP,
+    date TIMESTAMP DEFAULT NOW(),
     amount VARCHAR NOT NULL,
     homeAddress VARCHAR NOT NULL,
     officeAddress VARCHAR NOT NULL,
@@ -127,8 +127,7 @@ INSERT INTO loans (
     ) VALUES (
          1,
         'Somkene Bryan Chukwuma',
-        'kene@yahoo.com',
-        '2019-07-12 08:39:35 +0000',
+        'kene@yahoo.com'
          5000,
         'rd 17 diamond estate isheri',
         'egbada lagos',
