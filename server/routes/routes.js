@@ -45,7 +45,7 @@ router.post('/bus', isAdmin, createBus);
 router.get('/bus', isAdmin, getAllBus);
 
 // Loans
-router.post('/loans', applyLoan);
+router.post('/loans', verifyToken, applyLoan);
 router.get('/loans', getAllLoans);
 
 export default router;
