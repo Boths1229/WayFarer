@@ -119,8 +119,8 @@ CREATE TABLE loans(
     amount VARCHAR NOT NULL,
     homeAddress VARCHAR NOT NULL,
     officeAddress VARCHAR NOT NULL,
-    verified BOOLEAN NOT NULL DEFAULT false,
-    approved BOOLEAN NOT NULL DEFAULT false
+    verified VARCHAR NOT NULL DEFAULT 'NO',
+    approved VARCHAR NOT NULL DEFAULT 'NO'
 );
 INSERT INTO loans (
     id, fullName, email, date, amount, homeAddress, officeAddress, verified, approved
@@ -132,8 +132,8 @@ INSERT INTO loans (
          5000,
         'rd 17 diamond estate isheri',
         'egbada lagos',
-        false,
-        false
+        NO,
+        NO
 );
 `);
 
